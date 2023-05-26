@@ -620,14 +620,14 @@ if (isset($_POST['enquiries'])) {
                     <form method="post" target="votar" action="sharazstore.php?action=add&code=<?php echo $product_array[$key]["code"]; ?>" onsubmit="showMsg()" style="box-shadow:none;">
                       <div class="product-image">
                         <?php if ($product_array[$key]['ext'] == 'mp4') { ?>
-                          <video style="width:200px; height:200px;" autoplay muted loop>
+                          <video style="width:300px; height:300px;" autoplay muted loop>
                             <source src="<?php echo "php/Admin/products/" . $product_array[$key]['productimage']; ?>" style="max-width:250px; height:200px;margin-left:auto;margin-right:auto;display:block;">
                           </video>
                         <?php } else { ?>
-                          <img src="<?php echo "php/Admin/products/" . $product_array[$key]['productimage']; ?>" style="max-width:250px; height:200px;margin-left:auto;margin-right:auto;display:block;">
+                          <img src="<?php echo "php/Admin/products/" . $product_array[$key]['productimage']; ?>" style="width:250px; height:250px;margin-left:auto;margin-right:auto;display:block;">
                         <?php } ?>
                       </div>
-                      <div class="product-tile-footer"><br><br><br>
+                      <div class="product-tile-footer"><br><br><br><br>
                         <div class="product-title">
                           <h5><?php echo $product_array[$key]["productname"]; ?></h5>
                           <span class="fa fa-star checked"></span>
@@ -695,14 +695,14 @@ if (isset($_POST['enquiries'])) {
                     <form method="post" target="votar" action="sharazstore.php?action=add&code=<?php echo $product_array[$key]["code"]; ?>" onsubmit="showMsg()" style="box-shadow:none;">
                       <div class="product-image">
                         <?php if ($product_array[$key]['ext'] == 'mp4') { ?>
-                          <video style="width:200px; height:200px;" autoplay muted loop>
+                          <video style="width:300px; height:300px;" autoplay muted loop>
                             <source src="<?php echo "php/Admin/products/" . $product_array[$key]['productimage']; ?>" style="max-width:250px; height:200px;margin-left:auto;margin-right:auto;display:block;">
                           </video>
                         <?php } else { ?>
-                          <img src="<?php echo "php/Admin/products/" . $product_array[$key]['productimage']; ?>" style="max-width:250px; height:200px;margin-left:auto;margin-right:auto;display:block;">
+                          <img src="<?php echo "php/Admin/products/" . $product_array[$key]['productimage']; ?>" style="width:250px; height:250px;margin-left:auto;margin-right:auto;display:block;">
                         <?php } ?>
                       </div>
-                      <div class="product-tile-footer"><br><br><br>
+                      <div class="product-tile-footer"><br><br><br><br>
                         <div class="product-title">
                           <h5><?php echo $product_array[$key]["productname"]; ?></h5>
                           <span class="fa fa-star checked"></span>
