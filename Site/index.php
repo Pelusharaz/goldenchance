@@ -354,7 +354,7 @@ if (isset($_POST['enquiries'])) {
             <div class="text-white">
               <h1 class="mb-3">WELCOME TO GOLDEN CHANCE PROPERTIES</h1>
               <h5 class="mb-3">
-                Are you Looking for property ?Grab a "GODLEN CHANCE" Today
+                Are you Looking for property ?Grab a "GOLDEN CHANCE" Today
                 </h4>
                 <a class="btn btn-outline-light btn-lg" href="mailto: " role="button">Reach us !</a>
                 <div class="offer-btn" style="margin-top:10px;">
@@ -375,7 +375,7 @@ if (isset($_POST['enquiries'])) {
               <h1 class="mb-3">GRAB A GOLDEN CHANCE PROPERTY</h1>
               <h5 class="mb-3">
                 Begin your journey of success
-                Get instatnt property in a few clicks
+                Get instant property in a few clicks
                 </h4>
                 <a class="btn btn-outline-light btn-lg" href="mailto: " role="button">Reach us !</a>
                 <div class="offer-btn" style="margin-top:10px;">
