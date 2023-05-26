@@ -102,13 +102,13 @@ $total = $stmt->rowCount();
   </head>
   <body>
     <!-- popup modal -->
-  <button class="nav-link" aria-current="page" data-bs-toggle="modal" data-bs-target="#myModal2" style="display:none;">Pop up</button>
-  <div class="modal fade" id="myModal2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+
+  <div class="modal fade" id="myModal3" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <legend class="modal-title " id="staticBackdropLabel" style="border-radius:20px;"> Today's Top Deal</legend>
-          <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="$('#myModal2').hide()"></button> -->
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="$('#myModal2').hide()"></button>
         </div>
         <div class="modal-body">
           <!-- content offer goes here -->
@@ -122,23 +122,22 @@ $total = $stmt->rowCount();
             ?>
           
           <h3 class="text-center"><?php echo $offerrow->productname; ?></h3>
-          <div class="blog-img">
+            <div class="blog-img" style="margin-left:auto; margin-right:auto; display:block;">
               <?php if($offerrow->ext == 'mp4'){ ?>
-                <video width="465px" height="100%" autoplay muted loop>
+                <video height="100%" autoplay muted loop>
                  <source src="<?php echo "php/Admin/offers/". "{$offerrow->productimage}";?>">
                 </video>
                 <?php }else{?>
-                    <img src="<?php echo "php/Admin/offers/". "{$offerrow->productimage}";?>"
-                     width="465px" height="100%" />
+                    <img class="offer-image" src="<?php echo "php/Admin/offers/". "{$offerrow->productimage}";?>" height="100%;" />
               <?php }?>
             </div>
           <p class="text-center p-2"><b><?php echo $offerrow->productinfo; ?></b></p>
         
           <?php }?>
         </div>
-        <!-- <div class="modal-footer">
+        <div class="modal-footer">
             <button type="button" class="btn" data-bs-dismiss="modal" onclick="$('#myModal2').hide()">Cancel</button>
-          </div> -->
+          </div>
 
       </div>
     </div>
@@ -366,6 +365,11 @@ $total = $stmt->rowCount();
                Are you Looking for property ?Grab a "GODLEN CHANCE" Today
               </h4>
               <a class="btn btn-outline-light btn-lg" href="mailto: "  role="button">Reach us !</a>
+              <div class="offer-btn" style="margin-top:10px;">
+                  <button>
+                   <a class=" " aria-current="page" data-bs-toggle="modal" data-bs-target="#myModal3"style="color:white;">View Offers</a>
+                  </button>
+              </div>
             </div>
           </div>
         </div>
@@ -382,6 +386,11 @@ $total = $stmt->rowCount();
                 Get instatnt property in a few clicks
               </h4>
               <a class="btn btn-outline-light btn-lg" href="mailto: "  role="button">Reach us !</a>
+              <div class="offer-btn" style="margin-top:10px;">
+                  <button>
+                   <a class=" " aria-current="page" data-bs-toggle="modal" data-bs-target="#myModal3"style="color:white;">View Offers</a>
+                  </button>
+              </div>
             </div>
           </div>
         </div>
@@ -397,6 +406,11 @@ $total = $stmt->rowCount();
               Cheap and affordable properties
               </h4>
               <a class="btn btn-outline-light btn-lg" href="mailto: " role="button">Reach us !</a>
+              <div class="offer-btn" style="margin-top:10px;">
+                  <button>
+                   <a class=" " aria-current="page" data-bs-toggle="modal" data-bs-target="#myModal3"style="color:white;">View Offers</a>
+                  </button>
+              </div>
             </div>
           </div>
         </div>
@@ -853,6 +867,10 @@ $total = $stmt->rowCount();
     .small-screen-logo{
       display:none;
     }
+    .offer-image{
+      width:456px;
+      margin-left:-110px;
+    }
     @media only screen and (max-width: 700px) {
       .progress{
         display:block;
@@ -903,6 +921,10 @@ $total = $stmt->rowCount();
     }
     .large-screen-logo{
       display:none;
+    }
+    .offer-image{
+      width:100%;
+      margin-left:0px;
     }
     }
    </style>
