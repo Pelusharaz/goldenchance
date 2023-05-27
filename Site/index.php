@@ -156,7 +156,7 @@ if (isset($_POST['enquiries'])) {
           <h3 class="text-center"><?php echo $offerrow->productname; ?></h3>
             <div class="blog-img" style="margin-left:auto; margin-right:auto; display:block;">
               <?php if($offerrow->ext == 'mp4'){ ?>
-                <video height="100%" autoplay muted loop>
+                <video height="100%" controls>
                  <source src="<?php echo "php/Admin/offers/". "{$offerrow->productimage}";?>">
                 </video>
                 <?php }else{?>
@@ -620,7 +620,7 @@ if (isset($_POST['enquiries'])) {
                     <form method="post" target="votar" action="sharazstore.php?action=add&code=<?php echo $product_array[$key]["code"]; ?>" onsubmit="showMsg()" style="box-shadow:none;">
                       <div class="product-image">
                         <?php if ($product_array[$key]['ext'] == 'mp4') { ?>
-                          <video style="width:300px; height:300px;" autoplay muted loop>
+                          <video style="width:300px; height:300px;margin-top:-50px;" controls>
                             <source src="<?php echo "php/Admin/products/" . $product_array[$key]['productimage']; ?>" style="max-width:250px; height:200px;margin-left:auto;margin-right:auto;display:block;">
                           </video>
                         <?php } else { ?>
@@ -695,7 +695,7 @@ if (isset($_POST['enquiries'])) {
                     <form method="post" target="votar" action="sharazstore.php?action=add&code=<?php echo $product_array[$key]["code"]; ?>" onsubmit="showMsg()" style="box-shadow:none;">
                       <div class="product-image">
                         <?php if ($product_array[$key]['ext'] == 'mp4') { ?>
-                          <video style="width:300px; height:300px;" autoplay muted loop>
+                          <video style="width:300px; height:300px;margin-top:-50px;" controls>
                             <source src="<?php echo "php/Admin/products/" . $product_array[$key]['productimage']; ?>" style="max-width:250px; height:200px;margin-left:auto;margin-right:auto;display:block;">
                           </video>
                         <?php } else { ?>
@@ -1127,7 +1127,7 @@ if (isset($_POST['enquiries'])) {
             <div class="blog-img" style="margin:10px;">
               <h5 style="font-weight: bolder;"><?php echo $row->blogtitle ?></h5>
               <?php if ($row->ext == 'mp4') { ?>
-                <video style="width:200px; height:200px;" autoplay muted loop>
+                <video style="width:200px; height:200px;" controls>
                   <source src="<?php echo "php/Admin/blogs/" . "{$row->blogimage}"; ?>">
                 </video>
               <?php } else { ?>

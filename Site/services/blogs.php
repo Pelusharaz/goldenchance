@@ -613,7 +613,7 @@
               <div class="blog-img" style="margin:10px;">
                 <h5 class="card-title" style="font-weight: bolder;"><?php echo $row->blogtitle ?></h5>
                 <?php if($row->ext == 'mp4'){ ?>
-                <video style="width:200px; height:200px;" autoplay muted loop>
+                <video style="width:200px; height:200px;" controls>
                  <source src="<?php echo "../php/Admin/blogs/". "{$row->blogimage}";?>">
                 </video>
                 <?php }else{?>

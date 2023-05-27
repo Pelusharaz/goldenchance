@@ -627,19 +627,19 @@ session_start();
                 </li>
                 <li class="nav-item">
                   <form action=" " method="POST" style="box-shadow:none;">
-                    <input type="text" name="search" value="Events" style="display:none;">
+                    <input type="text" name="search" value="featured" style="display:none;">
                     <button class="nav-link" type="submit" name="submit"style="background-color:white;border:none;">Featured Property</button>
                   </form>
                 </li>
                 <li class="nav-item">
                   <form action=" " method="POST" style="box-shadow:none;">
-                    <input type="text" name="search" value="Shoots" style="display:none;">
+                    <input type="text" name="search" value="bestselling" style="display:none;">
                     <button class="nav-link" type="submit" name="submit"style="background-color:white;border:none;">Best Selling</button>
                   </form>
                 </li>
                 <li class="nav-item">
                   <form action=" " method="POST" style="box-shadow:none;">
-                    <input type="text" name="search" value="Edits" style="display:none;">
+                    <input type="text" name="search" value="hotdeals" style="display:none;">
                     <button class="nav-link" type="submit" name="submit"style="background-color:white;border:none;">Hot Deals</button>
                   </form>
                 </li>
@@ -679,14 +679,14 @@ session_start();
             <form method="post" target="votar" action="sharazstore.php?action=add&code=<?php echo $product_array[$key]["code"]; ?>" onsubmit="showMsg()" style="box-shadow:none;">
             <div class="product-image">
               <?php if($product_array[$key]['ext'] == 'mp4'){ ?>
-                <video style="width:200px; height:200px;" autoplay muted loop>
+                <video style="width:300px; height:300px;margin-top:-50px;" controls>
                  <source src="<?php echo "php/Admin/products/".$product_array[$key]['productimage'];?>" style="max-width:250px; height:200px;margin-left:auto;margin-right:auto;display:block;">
                 </video>
                 <?php }else{?>
-                  <img src="<?php echo "php/Admin/products/".$product_array[$key]['productimage'];?>" style="max-width:250px; height:200px;margin-left:auto;margin-right:auto;display:block;">
+                  <img src="<?php echo "php/Admin/products/".$product_array[$key]['productimage'];?>" style="width:250px; height:250px;margin-left:auto;margin-right:auto;display:block;">
               <?php }?>
             </div>
-            <div class="product-tile-footer"><br><br><br>
+            <div class="product-tile-footer"><br><br><br><br>
             <div class="product-title"><h5><?php echo $product_array[$key]["productname"]; ?></h5>
             <span class="fa fa-star checked"></span>
             <span class="fa fa-star checked"></span>
@@ -753,14 +753,14 @@ session_start();
 			<form method="post" target="votar" action="sharazstore.php?action=add&code=<?php echo $product_array[$key]["code"]; ?>" onsubmit="showMsg()" style="box-shadow:none;">
 			<div class="product-image">
               <?php if($product_array[$key]['ext'] == 'mp4'){ ?>
-                <video style="width:200px; height:200px;" autoplay muted loop>
+                <video style="width:300px; height:300px;margin-top:-50px;" controls>
                  <source src="<?php echo "php/Admin/products/".$product_array[$key]['productimage'];?>" style="max-width:250px; height:200px;margin-left:auto;margin-right:auto;display:block;">
                 </video>
                 <?php }else{?>
-                  <img src="<?php echo "php/Admin/products/".$product_array[$key]['productimage'];?>" style="max-width:250px; height:200px;margin-left:auto;margin-right:auto;display:block;">
+                  <img src="<?php echo "php/Admin/products/".$product_array[$key]['productimage'];?>" style="width:250px; height:250px;margin-left:auto;margin-right:auto;display:block;">
               <?php }?>
       </div>
-			<div class="product-tile-footer"><br><br><br>
+			<div class="product-tile-footer"><br><br><br><br>
 			<div class="product-title"><h5><?php echo $product_array[$key]["productname"]; ?></h5>
         <span class="fa fa-star checked"></span>
         <span class="fa fa-star checked"></span>
