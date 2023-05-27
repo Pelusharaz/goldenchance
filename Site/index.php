@@ -192,28 +192,36 @@ if (isset($_POST['enquiries'])) {
           </a>
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item active">
-              <a class="nav-link" aria-current="page" href="home-loggedin.php">Home</a>
+              <a class="nav-link" aria-current="page" href="home-loggedin.php"><p style="font-weight: bolder;">Home</p></a>
             </li>
             <li class="nav-item active" style="cursor:pointer;">
-              <a class="nav-link" aria-current="page" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Make Enquiries</a>
+              <a class="nav-link" aria-current="page" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><p style="font-weight: bolder;">Make Enquiries</p></a>
             </li>
             <li class="nav-item active" style="cursor:pointer;">
-              <a class="nav-link" aria-current="page" onclick="whoweare()">About us</a>
+              <a class="nav-link" aria-current="page" onclick="whoweare()"><p style="font-weight: bolder;">About us</p></a>
+            </li>
+            <li class="nav-item active" style="cursor:pointer;">
+              <a class="nav-link" aria-current="page" onclick="contactus()"><p style="font-weight: bolder;">Contact us</p></a>
+            </li>
+            <li class="nav-item active" style="cursor:pointer;">
+              <a class="nav-link" aria-current="page" onclick="showblogs()"><p style="font-weight: bolder;">Blogs</p></a>
+            </li>
+            <li class="nav-item active" style="cursor:pointer;">
+              <a class="nav-link" aria-current="page" href="services/studio.php"><p style="font-weight: bolder;">Gallery</p></a>
             </li>
 
-            <li class="nav-item me-3 me-lg-0 dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-mdb-toggle="dropdown" aria-expanded="false">Information Center
-              </a>
+            <!-- <li class="nav-item me-3 me-lg-0 dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-mdb-toggle="dropdown" aria-expanded="false"><p style="font-weight: bolder;">Gallery</p></a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li>
                   <a class="dropdown-item" onclick="showblogs()"> <i class="fa fa-book" aria-hidden="true" style="cursor:pointer;"> Blogs</i> </a>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="services/studio.php"> <i class="fa fa-camera" aria-hidden="true" style="cursor:pointer;"> Gallery</i> </a>
+                  <a class="dropdown-item" href="services/studio.php"> <i class="fa fa-camera" aria-hidden="true" style="cursor:pointer;"> View Gallery</i> </a>
                 </li>
               </ul>
-            </li>
-
+            </li>  -->
+             
             <li class="nav-item me-3 me-lg-0 dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
 
@@ -254,14 +262,25 @@ if (isset($_POST['enquiries'])) {
           <ul class="navbar-nav d-flex flex-row">
             <!-- Icons -->
             <li class="nav-item me-3 me-lg-0">
-              <a class="nav-link" href="tel:0791386752">
+              <a class="nav-link" target="_blank" href="mailto:goldenchancerealestateltd@gmail.com">
+                <i class="fa fa-envelope"><p style="font-weight:bolder;"></p></i>
+              </a>
+            </li>
+            <li class="nav-item me-3 me-lg-0">
+              <a class="nav-link" href="tel:0740027027">
                 <span class="badge badge-pill bg-danger"></span>
                 <span><i class="fa fa-phone fa fa-flip-horizontal"></i></span>
               </a>
             </li>
             <li class="nav-item me-3 me-lg-0">
-              <a class="nav-link" target="_blank" href="https://chat.whatsapp.com/C7eN9Xty4an65uNXjLPgH7">
+              <a class="nav-link" target="_blank" href="https://wa.me/0740027027">
                 <i class="fab fa-whatsapp"></i>
+              </a>
+            </li>
+            <li class="nav-item me-3 me-lg-0">
+              <a class="nav-link" href="tel:0740027027">
+                <span class="badge badge-pill bg-danger"></span>
+                <span style="font-weight:bolder;">0740027027</span>
               </a>
             </li>
             <!-- Icon dropdown -->
@@ -288,12 +307,12 @@ if (isset($_POST['enquiries'])) {
               </ul>
             </li>
           </ul>
-          <iframe name="reload" style="display:none;"></iframe>
+          <!-- <iframe name="reload" style="display:none;"></iframe>
           <form class="d-flex input-group w-auto" action="index.php" target="reload" method="POST" onsubmit="property()" style="box-shadow:none;display:flex;">
             <input style="padding:10px;" type="text" class="form-control" placeholder="Search for property" aria-label="Search" name="search" />
             <button style="margin-bottom:10px;" class="btn btn-outline-primary" type="submit" name="submit" data-mdb-ripple-color="dark">Go
             </button>
-          </form>
+          </form> -->
 
           <script>
             function property() {
@@ -309,6 +328,16 @@ if (isset($_POST['enquiries'])) {
 
             function whoweare() {
               var search = document.getElementById("whoweare");
+
+              search.scrollIntoView({
+                behavior: "smooth",
+                block: "end",
+                inline: "nearest"
+              })
+
+            }
+            function contactus() {
+              var search = document.getElementById("contactus");
 
               search.scrollIntoView({
                 behavior: "smooth",
@@ -605,7 +634,7 @@ if (isset($_POST['enquiries'])) {
 
       <!--- database property -->
 
-      <section class="text-center mb-4" style="overflow:scroll; height:700px; max-width:950px; margin-left:auto;margin-right:auto;display:block;" id="store">
+      <section class="text-center mb-4" style=" margin-left:auto;margin-right:auto;display:block;" id="store">
         <div class="row">
           <div id="product-grid">
             <?php
@@ -969,11 +998,11 @@ if (isset($_POST['enquiries'])) {
       </div>
     </div>
     <div class="why-choose-us" style="display:flex;">
-      <img src="img/sitebanner.jpg" class="img-fluid" alt="" style="width:100%">
+      <!-- <img src="img/sitebanner.jpg" class="img-fluid" alt="" style="width:100%;"> -->
     </div>
 
     <!-- contact us-->
-    <div class="wrapper">
+    <div class="wrapper" id="contactus">
       <div class="service picture" style="margin-top:50px;">
         <img class="img-fluid" src="img/contactus.jpg" alt="" height="470px">
       </div>
@@ -1296,15 +1325,15 @@ if (isset($_POST['enquiries'])) {
           <li class="nav-item me-3 me-lg-0">
             <a class="nav-link links" href="tel:07276660509">
               <span class="badge badge-pill bg-danger"></span>
-              <span><i class="fa fa-phone fa fa-flip-horizontal"></i> 07276660509</span>
+              <span><i class="fa fa-phone fa fa-flip-horizontal"></i> 0740027027</span>
             </a>
           </li>
-          <li class="nav-item me-3 me-lg-0">
+          <!-- <li class="nav-item me-3 me-lg-0">
             <a class="nav-link links" href="tel:0799091006">
               <span class="badge badge-pill bg-danger"></span>
               <span><i class="fa fa-phone fa fa-flip-horizontal"></i> 0799091006</span>
             </a>
-          </li>
+          </li> -->
           <li class="nav-item me-3 me-lg-0">
             <a class="nav-link links" href=" ">
               <span class="badge badge-pill bg-danger"></span>
