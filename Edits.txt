@@ -13,9 +13,9 @@ Restructuring the navigation bar
  *Mail icon added (Solved)
 
 
-Home Page Properties - On-going projects
+Home Page Properties - On-going projects (1 Page -Admin)
 
-View specific properties on click (view Property)-Bolg system
+View specific properties on click (view Property)-Bolg system (1 Page - User)
 *Book a site visit button on all properties
 *Have multiple photos(suggestion)
 
@@ -25,4 +25,6 @@ Suggestions
 *Have multiple photos on properties(suggestion)
 Domain changed to goldenchancerealestate.com/goldenchancerealestateltd.com
 
-Diaspora - Format Dhahabu Ltd
+Diaspora - Format Dhahabu Ltd (2 Pages)
+
+

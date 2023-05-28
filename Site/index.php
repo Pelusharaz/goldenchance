@@ -178,189 +178,7 @@ if (isset($_POST['enquiries'])) {
   <header>
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white">
-      <div class="container-fluid">
-        <a class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarExample01" aria-controls="navbarExample01" aria-expanded="false" aria-label="Toggle navigation">
-          <i class="fas fa-bars"></i>
-        </a>
-        <a href="home-loggedin.php">
-          <img src="img/Golden chance logo.png" class="small-screen-logo" align="right" height="80" width="220" alt="" loading="lazy" style="border-radius:50%;" />
-        </a>
-        <div class="collapse navbar-collapse" id="navbarExample01">
-          <a class="navbar-brand" href="#" style="margin-right:-30px; margin-left:-30px;">
-            <img src="img/Golden chance logo.png" class="large-screen-logo" height="100" width="280" alt="" loading="lazy" style="border-radius:50%;" />
-          </a>
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item active">
-              <a class="nav-link" aria-current="page" href="home-loggedin.php"><p style="font-weight: bolder;">Home</p></a>
-            </li>
-            <li class="nav-item active" style="cursor:pointer;">
-              <a class="nav-link" aria-current="page" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><p style="font-weight: bolder;">Make Enquiries</p></a>
-            </li>
-            <li class="nav-item active" style="cursor:pointer;">
-              <a class="nav-link" aria-current="page" onclick="whoweare()"><p style="font-weight: bolder;">About us</p></a>
-            </li>
-            <li class="nav-item active" style="cursor:pointer;">
-              <a class="nav-link" aria-current="page" onclick="contactus()"><p style="font-weight: bolder;">Contact us</p></a>
-            </li>
-            <li class="nav-item active" style="cursor:pointer;">
-              <a class="nav-link" aria-current="page" onclick="showblogs()"><p style="font-weight: bolder;">Blogs</p></a>
-            </li>
-            <li class="nav-item active" style="cursor:pointer;">
-              <a class="nav-link" aria-current="page" href="services/studio.php"><p style="font-weight: bolder;">Gallery</p></a>
-            </li>
-
-            <!-- <li class="nav-item me-3 me-lg-0 dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-mdb-toggle="dropdown" aria-expanded="false"><p style="font-weight: bolder;">Gallery</p></a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li>
-                  <a class="dropdown-item" onclick="showblogs()"> <i class="fa fa-book" aria-hidden="true" style="cursor:pointer;"> Blogs</i> </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="services/studio.php"> <i class="fa fa-camera" aria-hidden="true" style="cursor:pointer;"> View Gallery</i> </a>
-                </li>
-              </ul>
-            </li>  -->
-             
-            <li class="nav-item me-3 me-lg-0 dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
-
-                <button class="btn btn-outline-primary" type="submit" name="submit" data-mdb-ripple-color="dark">Our properties
-                </button>
-                <img src="img/icons/services.png" alt="services">
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li>
-                  <a class="dropdown-item" onclick="showMsg()"> <i class="fa fa-map-marker" aria-hidden="true"> Plots in Mombasa Road</i> </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" onclick="showMsg()"> <i class="fa fa-map-marker" aria-hidden="true"> Plots in Matuu</i> </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" onclick="showMsg()"> <i class="fa fa-map-marker" aria-hidden="true"> Plots in Gilgil Nakuru</i> </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" onclick="showMsg()"> <i class="fa fa-map-marker" aria-hidden="true"> Plots in Ruiru</i> </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" onclick="showMsg()"> <i class="fa fa-map-marker" aria-hidden="true"> Plots in Nyandarua</i> </a>
-                </li>
-            </li>
-            <li>
-              <a class="dropdown-item" onclick="showMsg()"> <i class="fa fa-map-marker" aria-hidden="true"> Plots in Juja</i> </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider" />
-            </li>
-            <li>
-              <a class="dropdown-item" href="tel:0791386752"><i class="fa fa-phone fa fa-flip-horizontal"></i> Own property Today!</a>
-            </li>
-          </ul>
-          </li>
-
-          </ul>
-          <ul class="navbar-nav d-flex flex-row">
-            <!-- Icons -->
-            <li class="nav-item me-3 me-lg-0">
-              <a class="nav-link" target="_blank" href="mailto:goldenchancerealestateltd@gmail.com">
-                <i class="fa fa-envelope"><p style="font-weight:bolder;"></p></i>
-              </a>
-            </li>
-            <li class="nav-item me-3 me-lg-0">
-              <a class="nav-link" href="tel:0740027027">
-                <span class="badge badge-pill bg-danger"></span>
-                <span><i class="fa fa-phone fa fa-flip-horizontal"></i></span>
-              </a>
-            </li>
-            <li class="nav-item me-3 me-lg-0">
-              <a class="nav-link" target="_blank" href="https://wa.me/0740027027">
-                <i class="fab fa-whatsapp"></i>
-              </a>
-            </li>
-            <li class="nav-item me-3 me-lg-0">
-              <a class="nav-link" href="tel:0740027027">
-                <span class="badge badge-pill bg-danger"></span>
-                <span style="font-weight:bolder;">0740027027</span>
-              </a>
-            </li>
-            <!-- Icon dropdown -->
-            <li class="nav-item me-3 me-lg-0 dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
-                <i class="fas fa-user"></i>
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li>
-                  <a class="dropdown-item" href="php/Users/signup.php">Sign Up</a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="php/Users/login.php">Log in</a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="php/Admin/login.php"><i class="fa fa-lock" aria-hidden="true"></i></a>
-                </li>
-                <li>
-                  <hr class="dropdown-divider" />
-                </li>
-                <li>
-                  <a class="dropdown-item" href="tel:0791386752"> <i class="fa fa-phone fa fa-flip-horizontal"></i> We are Just a call away </a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-          <!-- <iframe name="reload" style="display:none;"></iframe>
-          <form class="d-flex input-group w-auto" action="index.php" target="reload" method="POST" onsubmit="property()" style="box-shadow:none;display:flex;">
-            <input style="padding:10px;" type="text" class="form-control" placeholder="Search for property" aria-label="Search" name="search" />
-            <button style="margin-bottom:10px;" class="btn btn-outline-primary" type="submit" name="submit" data-mdb-ripple-color="dark">Go
-            </button>
-          </form> -->
-
-          <script>
-            function property() {
-              var search = document.getElementById("store");
-
-              search.scrollIntoView({
-                behavior: "smooth",
-                block: "end",
-                inline: "nearest"
-              })
-
-            }
-
-            function whoweare() {
-              var search = document.getElementById("whoweare");
-
-              search.scrollIntoView({
-                behavior: "smooth",
-                block: "end",
-                inline: "nearest"
-              })
-
-            }
-            function contactus() {
-              var search = document.getElementById("contactus");
-
-              search.scrollIntoView({
-                behavior: "smooth",
-                block: "end",
-                inline: "nearest"
-              })
-
-            }
-
-            function showblogs() {
-              var search = document.getElementById("blogs");
-
-              search.scrollIntoView({
-                behavior: "smooth",
-                block: "end",
-                inline: "nearest"
-              })
-
-            }
-          </script>
-        </div>
-      </div>
-    </nav>
+    <?php require_once 'php/includes/header.php'; ?>
 
     <style>
       #video-background {
@@ -385,7 +203,7 @@ if (isset($_POST['enquiries'])) {
               <h5 class="mb-3">
                 Are you Looking for property ?Grab a "GOLDEN CHANCE" Today
                 </h4>
-                <a class="btn btn-outline-light btn-lg" href="mailto: " role="button">Reach us !</a>
+                <a class="btn btn-outline-light btn-lg" href="mailto:goldenchancerealestateltd@gmail.com" role="button">Reach us !</a>
                 <div class="offer-btn" style="margin-top:10px;">
                   <button>
                    <a class=" " aria-current="page" data-bs-toggle="modal" data-bs-target="#myModal3"style="color:white;">View Offers</a>
@@ -406,7 +224,7 @@ if (isset($_POST['enquiries'])) {
                 Begin your journey of success
                 Get instant property in a few clicks
                 </h4>
-                <a class="btn btn-outline-light btn-lg" href="mailto: " role="button">Reach us !</a>
+                <a class="btn btn-outline-light btn-lg" href="mailto:goldenchancerealestateltd@gmail.com" role="button">Reach us !</a>
                 <div class="offer-btn" style="margin-top:10px;">
                   <button>
                    <a class=" " aria-current="page" data-bs-toggle="modal" data-bs-target="#myModal3" style="color:white;">View Offers</a>
@@ -426,7 +244,7 @@ if (isset($_POST['enquiries'])) {
               <h5 class="mb-3">
                 Cheap and affordable properties
                 </h4>
-                <a class="btn btn-outline-light btn-lg" href="mailto: " role="button">Reach us !</a>
+                <a class="btn btn-outline-light btn-lg" href="mailto:goldenchancerealestateltd@gmail.com" role="button">Reach us !</a>
                 <div class="offer-btn" style="margin-top:10px;">
                   <button>
                    <a class=" " aria-current="page" data-bs-toggle="modal" data-bs-target="#myModal3" style="color:white;">View Offers</a>
@@ -582,15 +400,13 @@ if (isset($_POST['enquiries'])) {
 
   <main class="mt-5">
     <div class="golden chance properties" style="margin-left:auto;margin-right:auto;display:block;text-align:center;">
-      <h4>Our Property</h4>
+      <h4 style="color:blue; font-weight:bolder;">Our On-Going Projects</h4>
     </div>
     <div class="alertMsg" id="alertMsg">Thank you for showing interest in our properties</div>
     <br>
-
     </div>
-
-    <div class="container">
-      <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+    
+    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
         <div class="container-fluid">
           <a class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
             <i class="fas fa-bars"></i>
@@ -599,31 +415,31 @@ if (isset($_POST['enquiries'])) {
             <strong class="text-dark mr-2">Find Your Dream Property:</strong>
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <form action=" " method="POST" style="box-shadow:none;">
+                <form action=" " method="POST" style="box-shadow:none;background-color:transparent;">
                   <input type="text" name="search" value="" style="display:none;">
-                  <button class="nav-link active" type="submit" name="submit" style="background-color:white;border:none;">All</button>
+                  <button class="nav-link active" type="submit" name="submit" style="background-color: rgb(241, 50, 194);border:none;color:white;">All</button>
                 </form>
               </li>
               <li class="nav-item">
-                <form action=" " method="POST" style="box-shadow:none;">
+                <form action=" " method="POST" style="box-shadow:none;background-color:transparent;">
                   <input type="text" name="search" value="featured" style="display:none;">
-                  <button class="nav-link" type="submit" name="submit" style="background-color:white;border:none;">Featured Property</button>
+                  <button class="nav-link" type="submit" name="submit" style="background-color:transparent;border:none;">Featured Property</button>
                 </form>
               </li>
               <li class="nav-item">
-                <form action=" " method="POST" style="box-shadow:none;">
+                <form action=" " method="POST" style="box-shadow:none;background-color:transparent;">
                   <input type="text" name="search" value="bestselling" style="display:none;">
-                  <button class="nav-link" type="submit" name="submit" style="background-color:white;border:none;">Best Selling</button>
+                  <button class="nav-link" type="submit" name="submit" style="background-color:transparent;border:none;">Best Selling</button>
                 </form>
               </li>
               <li class="nav-item">
-                <form action=" " method="POST" style="box-shadow:none;">
+                <form action=" " method="POST" style="box-shadow:none;background-color:transparent;">
                   <input type="text" name="search" value="hotdeals" style="display:none;">
-                  <button class="nav-link" type="submit" name="submit" style="background-color:white;border:none;">Hot Deals</button>
+                  <button class="nav-link" type="submit" name="submit" style="background-color:transparent;border:none;">Hot Deals</button>
                 </form>
               </li>
             </ul>
-            <form class="d-flex input-group w-auto" action=" " method="POST" style="box-shadow:none;">
+            <form class="d-flex input-group w-auto" action=" " method="POST" style="box-shadow:none;background-color:transparent;">
               <input type="text" class="form-control dt-properties-form" placeholder="Search for properties" aria-label="Search" name="search" />
               <button style="margin-bottom:10px;" class="btn btn-outline-primary" type="submit" name="submit" data-mdb-ripple-color="dark">Go
               </button>
@@ -631,10 +447,10 @@ if (isset($_POST['enquiries'])) {
           </div>
         </div>
       </nav>
-
+      
+    <div class="container">
       <!--- database property -->
-
-      <section class="text-center mb-4" style=" margin-left:auto;margin-right:auto;display:block;" id="store">
+      <section class="text-center mb-4" style="margin-left:auto;margin-right:auto;display:block;" id="store">
         <div class="row">
           <div id="product-grid">
             <?php
@@ -1293,96 +1109,14 @@ if (isset($_POST['enquiries'])) {
 
         </div> -->
 
-    <div class="about-us" id="whoweare">
-      <div class="who-we-are">
-        <h5 style="color:blue; font-weight:bolder;">Who we are</h5>
-        <p>Golden chance is a leading brand in the African real estate sector.
-          It was established in the year 2014 and has since then successfully settled its
-          clients on their dream property.
-        </p>
-        <br><br>
-        <h5 style="color:blue; font-weight:bolder;">Our Mission</h5>
-        <p>To assist our clients discover valuable investment opportunities in real time
-        </p>
-        <br><br>
-        <h5 style="color:blue; font-weight:bolder;">Our vision</h5>
-        <p>To become the most reliable Real Estate company driven by the customer's dream.
-        </p>
-      </div>
-      <div class="core-values">
-        <ul class="values">
-          <h5 style="color:blue; font-weight:bolder;">Core Values</h5>
-          <li>Led by God</li>
-          <li>Open and honest</li>
-          <li>Team work</li>
-          <li>Uphold integrity</li>
-          <li>Persue excellence</li>
-        </ul>
-      </div>
-      <div class="contacts">
-        <ul class="reach-us">
-          <h5 style="color:blue; font-weight:bolder;">We would Love to Hear From You</h5>
-          <li class="nav-item me-3 me-lg-0">
-            <a class="nav-link links" href="tel:07276660509">
-              <span class="badge badge-pill bg-danger"></span>
-              <span><i class="fa fa-phone fa fa-flip-horizontal"></i> 0740027027</span>
-            </a>
-          </li>
-          <!-- <li class="nav-item me-3 me-lg-0">
-            <a class="nav-link links" href="tel:0799091006">
-              <span class="badge badge-pill bg-danger"></span>
-              <span><i class="fa fa-phone fa fa-flip-horizontal"></i> 0799091006</span>
-            </a>
-          </li> -->
-          <li class="nav-item me-3 me-lg-0">
-            <a class="nav-link links" href=" ">
-              <span class="badge badge-pill bg-danger"></span>
-              <span><i class="fa fa-map-marker"> Ruiru Town,Bidii House 2nd Floor opposite NHIF,Room c2</i></span>
-            </a>
-          </li>
-
-        </ul>
-      </div>
-    </div>
+    
 
   </main>
-
   <!--Footer-->
-  <footer class="text-center text-white" style="background-color: #f1f1f1">
-    <!-- Grid container -->
-    <div class="container pt-4">
-      <!-- Section: Social media -->
-      <section class="mb-4">
-        <!-- Facebook -->
-        <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button" data-mdb-ripple-color="dark"><i class="fab fa-facebook-f"></i></a>
+  <div class="footer">
+    <?php require_once 'php/includes/footer.php'; ?>
+  </div>
 
-        <!-- Twitter -->
-        <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button" data-mdb-ripple-color="dark"><i class="fab fa-twitter"></i></a>
-
-        <!-- Google -->
-        <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button" data-mdb-ripple-color="dark"><i class="fab fa-google"></i></a>
-
-        <!-- Instagram -->
-        <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button" data-mdb-ripple-color="dark"><i class="fab fa-instagram"></i></a>
-
-        <!-- Linkedin -->
-        <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button" data-mdb-ripple-color="dark"><i class="fab fa-linkedin"></i></a>
-        <!-- whats app -->
-        <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="https://chat.whatsapp.com/C7eN9Xty4an65uNXjLPgH7" target="_blank" role="button" data-mdb-ripple-color="dark"><i class="fab fa-whatsapp"></i></a>
-
-      </section>
-      <!-- Section: Social media -->
-    </div>
-    <!-- Grid container -->
-
-    <!-- Copyright -->
-    <div class="text-center text-dark p-3" style="background-color: blue;">
-      <p style="color:white;"> &copy; Copyright <?php $year = date("Y"); echo $year; ?>
-        <a class="text-white" href="sharaztechs.66ghz.com">Golden Chance - Developed By Sharaz Technologies</a>
-      </p>
-    </div>
-    <!-- Copyright -->
-  </footer>
 </body>
 <!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
