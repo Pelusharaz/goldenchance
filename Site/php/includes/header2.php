@@ -87,13 +87,13 @@
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li>
-                  <a class="dropdown-item" href="php/Users/signup.php">Sign Up</a>
+                  <a class="dropdown-item" href="../php/Users/signup.php">Sign Up</a>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="php/Users/login.php">Log in</a>
+                  <a class="dropdown-item" href="../php/Users/login.php">Log in</a>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="php/Admin/login.php"><i class="fa fa-lock" aria-hidden="true"></i></a>
+                  <a class="dropdown-item" href="../php/Admin/login.php"><i class="fa fa-lock" aria-hidden="true"></i></a>
                 </li>
                 <li>
                   <hr class="dropdown-divider" />

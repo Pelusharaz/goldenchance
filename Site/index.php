@@ -527,6 +527,16 @@ if (isset($_POST['enquiries'])) {
                       </div>
                     </form>
                   </div>
+
+                  <!-- success message -->
+                <script>
+                   function showMsg() {
+                   $("#alertMsg").fadeIn('slow', function() {
+                   $(this).delay(1500).fadeOut('slow');
+                   window.location = 'services/property.php?property=<?php echo $product_array[$key]["id"]; ?>'
+                  });
+                 }
+                </script>
                 <?php
                 }
               }
@@ -603,22 +613,23 @@ if (isset($_POST['enquiries'])) {
                       </div>
                     </form>
                   </div>
+
+                 <!-- success message -->
+                <script>
+                   function showMsg() {
+                   $("#alertMsg").fadeIn('slow', function() {
+                   $(this).delay(1500).fadeOut('slow');
+                   window.location = 'services/property.php?property=<?php echo $product_array[$key]["id"]; ?>'
+                  });
+                 }
+                </script>
             <?php
                 }
               }
             }
             ?>
           </div>
-          <!-- success message -->
-          <script>
-            function showMsg() {
-              $("#alertMsg").fadeIn('slow', function() {
-                $(this).delay(1000).fadeOut('slow');
-                window.location = 'properties.php'
-              });
-            }
-          </script>
-
+          
           <style>
             .alertMsg {
               display: none;
