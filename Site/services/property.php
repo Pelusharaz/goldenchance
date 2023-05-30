@@ -354,17 +354,18 @@
           padding:10px;
         }
         /*viewcbtn*/
-        .viewbtn{
-          height:15%;
-          text-align:center;
-          opacity: 1;
-          background: blue;
-          color:#fff;
-          border-radius:25px;
-          padding:10px;
+        .viewbtn {
+         width: 100px;
+         padding: 0px;
+         border: none;
+         border-radius: 5px; 
+         background: rgb(11, 117, 238);
+         font-size: 16px;
+         cursor: pointer;
+         color: rgb(252, 252, 252);
         }
-        .viewbtn:hover{
-          background:red;
+        .viewbtn:hover {
+          background: orangered;
         }
         </style>
         
@@ -427,7 +428,6 @@
         ?>
         <div class="container news-blogs" style="padding-top:20px;margin-top:20px;">
           <div class="header" style="display:flex;">
-            <h4 style="color:blue; font-weight:bolder;"><?php echo $row->productname ?></h4>
             <div class="available"style="margin-left:10px;">
             <?php
                 require_once '../php/includes/config.php';
@@ -443,7 +443,10 @@
                 <button class="viewbtn" onclick="showMsg()">Available</button>
             <?php } ?>
             </div>
+            <h4 style="color:black; font-weight:bolder;margin-right:10px;"></h4><h5 style="color:black; font-weight:bold;">Kes <?php echo $row->price ?></h5>
           </div>
+          <h4 style="color:blue; font-weight:bolder;margin-left:10px;"><?php echo $row->productname ?></h4>
+          <a href="tel:0791386752"><i class="fa-map-marker fa"></i> Juja 24 Mins from the highway</a><br><br><br>
 
           <div class="row row-blog">
             
