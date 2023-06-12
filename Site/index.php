@@ -448,7 +448,7 @@ if (isset($_POST['enquiries'])) {
         </div>
       </nav>
       
-    <div class="container">
+    <div class="properties" style="margin-left:auto;margin-right:auto;display:block;">
       <!--- database property -->
       <section class="text-center mb-4" style="margin-left:auto;margin-right:auto;display:block;" id="store">
         <div class="row">
@@ -521,7 +521,8 @@ if (isset($_POST['enquiries'])) {
                             <a class="btn btn-danger" style="cursor: no-drop;">Property Sold Out</a>
                           <?php }
                         } else { ?>
-                          <button class="viewbtn" onclick="showMsg()">View Property</button>
+                          <!-- <button class="viewbtn" onclick="showMsg()">View Property</button> -->
+                          <a class="btn viewbtn" href="services/property.php?property=<?php echo $product_array[$key]["id"]; ?>">View Property</a>
                         <?php } ?>
 
                       </div>
@@ -533,7 +534,7 @@ if (isset($_POST['enquiries'])) {
                    function showMsg() {
                    $("#alertMsg").fadeIn('slow', function() {
                    $(this).delay(1500).fadeOut('slow');
-                   window.location = 'services/property.php?property=<?php echo $product_array[$key]["id"]; ?>'
+                   window.location = 'properties.php'
                   });
                  }
                 </script>
@@ -606,7 +607,8 @@ if (isset($_POST['enquiries'])) {
                             <a class="btn btn-danger" style="cursor: no-drop;">Property Sold Out</a>
                           <?php }
                         } else { ?>
-                          <button class="viewbtn" onclick="showMsg()">View Property</button>
+                           <!-- <button class="viewbtn" onclick="showMsg()">View Property</button> -->
+                           <a class="btn viewbtn" href="services/property.php?property=<?php echo $product_array[$key]["id"]; ?>">View Property</a> 
                         <?php } ?>
 
 
@@ -618,8 +620,8 @@ if (isset($_POST['enquiries'])) {
                 <script>
                    function showMsg() {
                    $("#alertMsg").fadeIn('slow', function() {
-                   $(this).delay(1500).fadeOut('slow');
-                   window.location = 'services/property.php?property=<?php echo $product_array[$key]["id"]; ?>'
+                   $(this).delay(3000).fadeOut('slow');
+                   window.location = 'properties.php'
                   });
                  }
                 </script>

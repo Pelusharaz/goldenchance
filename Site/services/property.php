@@ -479,7 +479,7 @@
 
         </div>
     <!-- success message -->
-    <script>
+    <!-- <script>
       function showMsg()
       {
       $("#alertMsg").fadeIn('slow', function () {
@@ -487,8 +487,14 @@
       window.location = '../properties.php'
       });
     }
-    </script>
-
+    </script> -->
+    <script>
+    $(window).on('load', function() {
+      $("#alertMsg").fadeIn('slow');
+      $("#alertMsg").delay(1000).fadeOut('slow');
+    });
+   </script>
+  
    <style>
     .alertMsg
     {
