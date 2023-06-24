@@ -435,9 +435,9 @@
                 $stmt = $DBH->prepare($sql);
                 $stmt->execute();
                 if ($stmt->rowCount() == 1) {
-                    while ($row = $stmt->fetchObject()) {
+                    while ($row1 = $stmt->fetchObject()) {
                 ?>
-                <a class="btn btn-danger" style="cursor: no-drop;">Property Sold Out</a>
+                <button class="btn viewbtn" style="cursor: no-drop; background-color:red;text-transform:lowercase;">Sold out</button>
                 <?php }
                     } else { ?>
                 <button class="viewbtn" onclick="showMsg()">Available</button>

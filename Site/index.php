@@ -125,7 +125,7 @@ if (isset($_POST['enquiries'])) {
   <!-- popup -->
   <script type="text/javascript">
     $(window).on('load', function() {
-      $("#myModal2").modal('show');
+      $("#myModal3").modal('show');
     });
   </script>
 </head>
@@ -140,7 +140,7 @@ if (isset($_POST['enquiries'])) {
       <div class="modal-content">
         <div class="modal-header">
           <legend class="modal-title " id="staticBackdropLabel" style="border-radius:20px;"> Today's Top Deal</legend>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="$('#myModal2').hide()"></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="$('#myModal3').modal('hide')"></button>
         </div>
         <div class="modal-body">
           <!-- content offer goes here -->
@@ -168,7 +168,7 @@ if (isset($_POST['enquiries'])) {
           <?php }?>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn" data-bs-dismiss="modal" onclick="$('#myModal2').hide()">Cancel</button>
+            <button type="button" class="btn" data-bs-dismiss="modal" onclick="$('#myModal3').modal('hide')">Cancel</button>
           </div>
 
       </div>
@@ -518,7 +518,8 @@ if (isset($_POST['enquiries'])) {
                         if ($stmt->rowCount() == 1) {
                           while ($row = $stmt->fetchObject()) {
                         ?>
-                            <a class="btn btn-danger" style="cursor: no-drop;">Property Sold Out</a>
+                            <!-- <a class="btn btn-danger" style="cursor: no-drop;">Property Sold Out</a> -->
+                            <a class="btn btn-danger" href="services/property.php?property=<?php echo $product_array[$key]["id"]; ?>">Property Sold Out</a>
                           <?php }
                         } else { ?>
                           <!-- <button class="viewbtn" onclick="showMsg()">View Property</button> -->
@@ -604,7 +605,8 @@ if (isset($_POST['enquiries'])) {
                         if ($stmt->rowCount() == 1) {
                           while ($row = $stmt->fetchObject()) {
                         ?>
-                            <a class="btn btn-danger" style="cursor: no-drop;">Property Sold Out</a>
+                            <!-- <a class="btn btn-danger" style="cursor: no-drop;">Property Sold Out</a> -->
+                            <a class="btn btn-danger" href="services/property.php?property=<?php echo $product_array[$key]["id"]; ?>">Property Sold Out</a>
                           <?php }
                         } else { ?>
                            <!-- <button class="viewbtn" onclick="showMsg()">View Property</button> -->
