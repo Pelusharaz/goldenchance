@@ -88,7 +88,7 @@
     <!-- Copyright -->
     <div class="text-center text-dark p-3" style="background-color: blue;">
       <p style="color:white;"> &copy; Copyright <?php $year = date("Y"); echo $year; ?>
-        <a class="text-white" href="sharaztechs.66ghz.com">Golden Chance - Developed By Sharaz Technologies</a>
+        <a class="text-white" target="blank" href="../../../../sharaztechs.66ghz.com">Golden Chance - Developed By Sharaz Technologies</a>
       </p>
     </div>
     <!-- Copyright -->
