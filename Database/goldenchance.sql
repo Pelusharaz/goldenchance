@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.11
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: May 23, 2023 at 08:56 AM
--- Server version: 5.7.41
--- PHP Version: 7.4.33
+-- Host: 127.0.0.1
+-- Generation Time: Aug 31, 2023 at 08:13 PM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 8.1.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `goldench_goldenchance`
+-- Database: `goldenchance`
 --
 
 -- --------------------------------------------------------
@@ -220,6 +219,8 @@ CREATE TABLE `products` (
   `category` varchar(100) NOT NULL,
   `products` varchar(100) NOT NULL,
   `code` varchar(100) NOT NULL,
+  `location` varchar(100) NOT NULL,
+  `size` varchar(100) NOT NULL,
   `Date` date NOT NULL,
   `Time` time(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -228,20 +229,24 @@ CREATE TABLE `products` (
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`id`, `productname`, `price`, `productinfo`, `productimage`, `ext`, `category`, `products`, `code`, `Date`, `Time`) VALUES
-(27, 'Land in Matuu', 180000, '50*100 Plots.  Water and electricity. Ready title deed', 'WhatsApp Image 2023-01-18 at 4.08.29 PM.jpeg', 'jpeg', 'bestselling', 'products', '1', '2022-12-21', '07:15:55.0'),
-(30, 'Kitengela Projects', 1200000, '50*100 residential plots, touching the tarmac with good security, water and electricity', 'WhatsApp Image 2022-09-19 at 1.20.12 PM (2).jpg', 'jpg', 'hotdeals', 'products', '1', '2022-12-21', '07:17:48.0'),
-(31, 'Plots In Gilgil', 350000, '50 by 100 Plots, near Lake Elementatiata Pebble Resort, with water and electricity and ready title d', 'WhatsApp Image 2023-05-23 at 9.02.31 AM (1).jpeg', 'jpeg', 'hotdeals', 'products', '1', '2022-12-21', '07:18:46.0'),
-(32, 'Plots in Ruiru', 1200000, '50 by 85 residential plots in a gated community, with water and electricity. Ready title deeds', 'IMG-20210503-WA0004.jpg', 'jpg', 'featured', 'products', 'R', '2023-01-04', '09:45:55.0'),
-(33, 'Mwalimu farm', 2500000, '1,2 and 3 acres starting @ 2.5M - 3Mper  acre', 'IMG_20230104_124958.jpg', 'jpg', 'hotdeals', 'products', 'M', '2023-01-04', '09:49:37.0'),
-(35, 'Nyandarua Project ', 1000000, '1 acre in Nyandarua ', 'IMG_20201206_133455-870x420.jpg', 'jpg', 'hotdeals', 'products', 'N', '2023-01-04', '09:58:25.0'),
-(36, 'Tulia Gardens Matuu', 230000, '50*100 Plots. 300 Meters from tarmac. Water and electricity. Ready title deed', 'WhatsApp Image 2023-04-24 at 2.23.01 PM.jpeg', 'jpeg', 'bestselling', 'products', 'Mt', '2023-01-04', '10:00:55.0'),
-(38, 'Foothill Gardens Kilimambogo', 375000, '50 x 100 plots. Fully serviced( water, electricity and roads). Spectacular 14 falls. Unique getaway ', 'WhatsApp Video 2023-01-31 at 5.43.01 PM.mp4', 'mp4', 'featured', 'products', 'k', '2023-03-04', '07:45:51.0'),
-(39, 'Nataana Gardens Naivasha', 300000, '50 x 100 plots. Located just 3km from Kongoni Lodge off the Moi South Lake rd.', 'WhatsApp Image 2022-10-12 at 9.26.47 PM.jpeg', 'jpeg', 'hotdeals', 'products', 'n', '2023-03-04', '07:49:36.0'),
-(40, 'Plots in Isinya- Kiserian', 395000, '2KM from isinya town along Kiserian tarmac. Well developed neighborhood, water, electricity, murram ', 'WhatsApp Image 2023-03-29 at 4.56.18 PM.jpeg', 'jpeg', 'hotdeals', 'products', 'i', '2023-03-29', '15:09:34.0'),
-(41, 'Nanyuki Project', 700000, '12 acres Nanyuki Ngobit.  300 meters from tarmac. Rich black cotton soil. Overlooking the beautiful ', 'WhatsApp Image 2023-03-29 at 5.03.51 PM.jpeg', 'jpeg', 'hotdeals', 'products', 'ny', '2023-03-29', '15:20:32.0'),
-(42, 'Fahari Gardens Naivasha', 750000, '50 x 100 plots, located 4km from Naivasha along Mai Mahiu road. 13 minutes from Mai Mahiu town .Just', 'WhatsApp Image 2023-04-28 at 2.02.19 PM.jpeg', 'jpeg', 'hotdeals', 'products', 'nv', '2023-05-04', '06:08:14.0'),
-(43, 'Ridge View Gardens- Juja farm', 899000, '50 x 100 plots, near Mwireri shopping centre, good neighborhood, social amenities: schools, churches', 'WhatsApp Image 2023-05-23 at 9.02.31 AM.jpeg', 'jpeg', 'hotdeals', 'products', 'jf', '2023-05-23', '05:57:36.0');
+INSERT INTO `products` (`id`, `productname`, `price`, `productinfo`, `productimage`, `ext`, `category`, `products`, `code`, `location`, `size`, `Date`, `Time`) VALUES
+(27, 'Land in Matuu', 180000, '50*100 Plots.  Water and electricity. Ready title deed', 'WhatsApp Image 2023-01-18 at 4.08.29 PM.jpeg', 'jpeg', 'bestselling', 'products', '1', '', '', '2022-12-21', '07:15:55.0'),
+(30, 'Kitengela Projects', 1200000, '50*100 residential plots, touching the tarmac with good security, water and electricity', 'WhatsApp Image 2022-09-19 at 1.20.12 PM (2).jpg', 'jpg', 'hotdeals', 'products', '1', '', '', '2022-12-21', '07:17:48.0'),
+(31, 'Plots In Gilgil', 350000, '50 by 100 Plots, near Lake Elementatiata Pebble Resort, with water and electricity and ready title d', 'WhatsApp Image 2023-05-23 at 9.02.31 AM (1).jpeg', 'jpeg', 'hotdeals', 'products', '1', '', '', '2022-12-21', '07:18:46.0'),
+(32, 'Plots in Ruiru', 1200000, '50 by 85 residential plots in a gated community, with water and electricity. Ready title deeds', 'IMG-20210503-WA0004.jpg', 'jpg', 'featured', 'products', 'R', '', '', '2023-01-04', '09:45:55.0'),
+(33, 'Mwalimu farm', 2500000, '1,2 and 3 acres starting @ 2.5M - 3Mper  acre', 'IMG_20230104_124958.jpg', 'jpg', 'hotdeals', 'products', 'M', '', '', '2023-01-04', '09:49:37.0'),
+(35, 'Nyandarua Project ', 1000000, '1 acre in Nyandarua ', 'IMG_20201206_133455-870x420.jpg', 'jpg', 'hotdeals', 'products', 'N', '', '', '2023-01-04', '09:58:25.0'),
+(36, 'Tulia Gardens Matuu', 230000, '50*100 Plots. 300 Meters from tarmac. Water and electricity. Ready title deed', 'WhatsApp Image 2023-04-24 at 2.23.01 PM.jpeg', 'jpeg', 'bestselling', 'products', 'Mt', '', '', '2023-01-04', '10:00:55.0'),
+(38, 'Foothill Gardens Kilimambogo', 375000, '50 x 100 plots. Fully serviced( water, electricity and roads). Spectacular 14 falls. Unique getaway ', 'WhatsApp Video 2023-01-31 at 5.43.01 PM.mp4', 'mp4', 'featured', 'products', 'k', '', '', '2023-03-04', '07:45:51.0'),
+(39, 'Nataana Gardens Naivasha', 300000, '50 x 100 plots. Located just 3km from Kongoni Lodge off the Moi South Lake rd.', 'WhatsApp Image 2022-10-12 at 9.26.47 PM.jpeg', 'jpeg', 'hotdeals', 'products', 'n', '', '', '2023-03-04', '07:49:36.0'),
+(40, 'Plots in Isinya- Kiserian', 395000, '2KM from isinya town along Kiserian tarmac. Well developed neighborhood, water, electricity, murram ', 'WhatsApp Image 2023-03-29 at 4.56.18 PM.jpeg', 'jpeg', 'hotdeals', 'products', 'i', '', '', '2023-03-29', '15:09:34.0'),
+(41, 'Nanyuki Project', 700000, '12 acres Nanyuki Ngobit.  300 meters from tarmac. Rich black cotton soil. Overlooking the beautiful ', 'WhatsApp Image 2023-03-29 at 5.03.51 PM.jpeg', 'jpeg', 'hotdeals', 'products', 'ny', '', '', '2023-03-29', '15:20:32.0'),
+(42, 'Fahari Gardens Naivasha', 750000, '50 x 100 plots, located 4km from Naivasha along Mai Mahiu road. 13 minutes from Mai Mahiu town .Just', 'WhatsApp Image 2023-04-28 at 2.02.19 PM.jpeg', 'jpeg', 'hotdeals', 'products', 'nv', '', '', '2023-05-04', '06:08:14.0'),
+(43, 'Ridge View Gardens- Juja farm', 899000, '50 x 100 plots, near Mwireri shopping centre, good neighborhood, social amenities: schools, churches', 'WhatsApp Image 2023-05-23 at 9.02.31 AM.jpeg', 'jpeg', 'hotdeals', 'products', 'jf', '', '', '2023-05-23', '05:57:36.0'),
+(48, 'Final Test', 300000, 'test info', 'IMG-20220919-WA0003.jpg', 'jpg', 'featured', 'products', 'TR', 'Ruiru', '100*100', '2023-08-31', '20:11:21.0'),
+(49, 'Test3', 300000, 'test info2', 'IMG_20230104_124958.jpg', 'jpg', 'featured', 'products', 'TR', 'Ruiru', '100*100', '2023-08-31', '20:19:54.0'),
+(50, 'Final Test', 400000, 'test info2', 'IMG_20201206_133455-870x420.jpg', 'jpg', 'featured', 'products', 'TR', 'Nakuru', '100*100', '2023-08-31', '20:50:24.0'),
+(51, 'Test4', 300000, 'test info3', 'IMG_20230104_121438.jpg', 'jpg', 'bestselling', 'products', 'TR', 'Nakuru', '50*20', '2023-08-31', '20:52:37.0');
 
 -- --------------------------------------------------------
 
@@ -433,46 +438,10 @@ ALTER TABLE `callrequests`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `contact`
---
-ALTER TABLE `contact`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `enquiries`
---
-ALTER TABLE `enquiries`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
-
---
--- AUTO_INCREMENT for table `offers`
---
-ALTER TABLE `offers`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
-
---
--- AUTO_INCREMENT for table `soldout`
---
-ALTER TABLE `soldout`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
-
---
--- AUTO_INCREMENT for table `studio`
---
-ALTER TABLE `studio`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
-
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
