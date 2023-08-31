@@ -1,29 +1,27 @@
-<!---book information--->
+<!-- Site Visits -->
 <?php
  require_once '../php/includes/config.php';
- if (isset($_POST['bookbtn'])){
+ if (isset($_POST['sitevisits'])){
 
   $name = $_POST['name'];
-  $email = $_POST['email'];
   $phone = $_POST['phone'];
+  $email = $_POST['email'];
   $location = $_POST['location'];
-  $service = $_POST['service'];
-  $editing = $_POST['editing'];
-  $dateofservice = $_POST['dateofservice'];
+  $preferreddate = $_POST['preferreddate'];
+  $message = $_POST['message'];
   $checkbox = $_POST['checkbox'];
-
-    try {
-        //code...
-        $sql = 'INSERT INTO studiobookings(name,email,phone,location,service,editing,dateofservice,checkbox,Date,Time ) VALUES(?,?,?,?,?,?,?,?,Now(),Now() )';
-        $sth = $DBH->prepare($sql);
-        $sth->execute(array($name,$email,$phone,$location,$service,$editing,$dateofservice,$checkbox));
-        $_SESSION['success'] = "message sent successfully.";
-      } catch (PDOException $e) {
-        //throw $th;
-        echo $e->getMessage();
-      }
-      echo" <script>alert('Booked successfully')</script>
-      <script>window.location = 'studio.php'</script>";
+ 
+  try {
+    //code...
+    $sql = 'INSERT INTO bookings(name,phone,email,location,preferreddate,message,checkbox,Date,Time ) VALUES(?,?,?,?,?,?,?,Now(),Now() )';
+    $sth = $DBH->prepare($sql);
+    $sth->execute(array($name,$phone,$email,$location,$preferreddate,$message,$checkbox ));
+    $_SESSION['success'] = "message sent successfully.";
+  } catch (PDOException $e) {
+    //throw $th;
+    echo $e->getMessage();
+  }
+  echo "<script>alert('Booking was successfully. We will get back to you shortly')</script>";
  }
  
  ?>
@@ -244,7 +242,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
     
-    <form action="studio.php" method="POST" enctype="multipart/form-data" style="box-shadow:none;">
+    <form action=" " method="POST" enctype="multipart/form-data" style="box-shadow:none;">
       <div class="modal-body">
       <fieldset>
         
@@ -262,7 +260,7 @@
             <input id="information" type="email" name="email" required/>
           </div>
           <div class="item">
-            <select style="padding-top:8px; padding-bottom:8px;margin-top:17px;" name="service" required>
+            <select style="padding-top:8px; padding-bottom:8px;margin-top:17px;" name="location" required>
              <option value="" disabled selected>Location <span>*</span></option>
              <option value="Mombasa Road" >Mombasa Road</option>
              <option value="Matuu" >Matuu</option>
@@ -288,7 +286,7 @@
                   class="form-control"
                   placeholder=" "
                   aria-label="Search"
-                  name="dateofservice"
+                  name="preferreddate"
                   id="dob"
                   value="" required/>
               </div>
@@ -314,7 +312,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn" data-bs-dismiss="modal">Cancel</button>
-        <button type="submit" name="bookbtn" class="btn btn-primary">Book Now!</button>
+        <button type="submit" name="sitevisits" class="btn btn-primary">Book Now!</button>
       </div>
     </form>
 
@@ -443,18 +441,18 @@
                 <button class="viewbtn" onclick="showMsg()">Available</button>
             <?php } ?>
             </div>
-            <h4 style="color:black; font-weight:bolder;margin-right:10px;"></h4><h5 style="color:black; font-weight:bold;">Kes <?php echo $row->price ?></h5>
+            <h4 style="color:black; font-weight:bolder;margin-right:10px;"></h4><h5 style="color:black; font-weight:bold;">Kes <?php echo number_format($row->price)?>/=</h5>
           </div>
           <h4 style="color:blue; font-weight:bolder;margin-left:10px;"><?php echo $row->productname ?></h4>
-          <a href="tel:0791386752"><i class="fa-map-marker fa"></i> Juja 24 Mins from the highway</a><br><br><br>
+          <a href="tel:0740027027"><i class="fa-map-marker fa"></i> <?php echo $row->location ?></a><br><br><br>
 
           <div class="row row-blog">
             
             <div class="blog">
 
-              <div class="blog-img" style="margin:10px; width:20%">
+              <div class="blog-img" style="margin:10px;">
               <?php if($row->ext == 'mp4'){ ?>
-                 <video style="width:300px; height:300px;margin-top:-50px;" controls>
+                 <video style="width:250px; height:250px;margin-top:-50px;" controls>
                    <source src="<?php echo "../php/Admin/products/". "{$row->productimage}";?>" style="max-width:250px; height:200px;margin-left:auto;margin-right:auto;display:block;">
                  </video>
                 <?php }else{?>
@@ -462,16 +460,46 @@
               <?php }?>
               </div>
               
-              <div class="information" style="width:40%;margin-left:40px;">
-                  <span style="display:flex;"><h6 style="font-weight: bolder;">Starting From :</h6><p> Ksh <?php echo $row->price ?>/=</p> </span> 
-                  <h6 style="font-weight: bolder;">Information </h6>
+              <div class="information">
+                  <h6 style="font-weight: bolder;">Amenities </h6>
                   <p><?php echo $row->productinfo ?></p>
-                  <h6><?php echo $row->category ?></h6>
+                  <span style="display:flex;"><h6>Size : </h6><p><?php echo $row->size ?></p></span>
+                  <span style="display:flex;"><h6>Category : </h6><p><?php echo $row->category ?></p></span>
                   <button type="submit" name="submit" data-bs-toggle="modal" data-bs-target="#bookings" role="button"> <a style="color:white;">Book Site Visit</a> </button>
               </div>
 
 
               <?php }?>
+
+              <div class="more-properties">
+                  <h5 style="color:black; font-weight:bold;">MORE PROPERTIES</h5>
+                  <?php
+                    require_once '../php/includes/config.php';
+                    $sql="SELECT * FROM products order by id DESC LIMIT 2";
+                    $stmt = $DBH->prepare($sql);
+                    $stmt->execute();
+                    while($row = $stmt->fetchObject()) {
+            
+                  ?>
+                    <div class="properties"style="display:flex;">
+                      <div class="property-img" style="margin:10px;">
+                       <?php if($row->ext == 'mp4'){ ?>
+                        <video style="width:150px; height:150px;margin-top:-50px;" controls>
+                         <source src="<?php echo "../php/Admin/products/". "{$row->productimage}";?>" style="max-width:250px; height:200px;margin-left:auto;margin-right:auto;display:block;">
+                        </video>
+                       <?php }else{?>
+                        <img src="<?php echo "../php/Admin/products/". "{$row->productimage}";?>" style="width:150px; height:150px;margin-left:auto;margin-right:auto;display:block;">
+                       <?php }?>
+                      </div>
+                      <div class="property-info">
+                        <h6 style="font-weight: bolder;"><?php echo $row->productname ?> </h6>
+                        <p><i class="fa-map-marker fa"></i> <?php echo $row->location ?></p>
+                        <a href="property.php?property=<?php echo $row->id ?>">see details</a>
+                        
+                      </div>
+                    </div>
+                  <?php }?>
+              </div>
 
             </div>
 
@@ -479,7 +507,7 @@
 
         </div>
     <!-- success message -->
-    <!-- <script>
+    <script>
       function showMsg()
       {
       $("#alertMsg").fadeIn('slow', function () {
@@ -487,7 +515,7 @@
       window.location = '../properties.php'
       });
     }
-    </script> -->
+    </script>
     <script>
     $(window).on('load', function() {
       $("#alertMsg").fadeIn('slow');
@@ -546,6 +574,19 @@
     .blog {
       display: flex;
       }
+    .blog-img{
+      width:20%;
+    }
+    .information{
+      margin-left:40px;
+      width:40%;
+    }
+    .more-properties{
+      width:30%;
+      margin-left:10px;
+      margin-top:-130px;
+      display:block;
+    }
 
     /* grid-gallery */
     .row {
@@ -597,6 +638,17 @@
      }
     .information{
       padding: 20px;
+      margin-left:0px;
+      width:100%;
+    }
+    .blog-image{
+      width:100%;
+    }
+    .more-properties{
+      width:100%;
+      margin-left:10px;
+      margin-top:0px;
+      display:block;
     }
     .dt-properties-form{
        margin-left:0px;

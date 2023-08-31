@@ -25,6 +25,8 @@ $total = $stmt->rowCount();
   $category = $_POST['category'];
   $products = $_POST['products'];
   $code = $_POST['code'];
+  $location = $_POST['location'];
+  $size = $_POST['size'];
   $productimage = $_FILES['productimage']['name'];
   $ext = pathinfo($productimage , PATHINFO_EXTENSION);
   
@@ -33,20 +35,19 @@ $total = $stmt->rowCount();
   
     try {
         //code...
-        $sql = 'INSERT INTO products(productname,price,productinfo,productimage,ext,category,products,code,Date,Time ) VALUES(?,?,?,?,?,?,?,?,Now(),Now() ) ';
+        $sql = 'INSERT INTO products(productname,price,productinfo,productimage,ext,category,products,code,location,size,Date,Time ) VALUES(?,?,?,?,?,?,?,?,?,?,Now(),Now() ) ';
         $sth = $DBH->prepare($sql);
-        $sth->execute(array($productname,$price,$productinfo,$productimage,$ext,$category,$products,$code));
+        $sth->execute(array($productname,$price,$productinfo,$productimage,$ext,$category,$products,$code,$location,$size));
         $_SESSION['success'] = "message sent successfully.";
       } catch (PDOException $e) {
         //throw $th;
         echo $e->getMessage();
       }
       echo "<script>alert('Property Uploaded Successfully')</script>
-		   <script>window.location = 'admin.php'</script>";
+		  ";
     
     //uploading image
     if (move_uploaded_file($_FILES['productimage']['tmp_name'], $target)) {
-      header("location:admin.php");
       $msg = "property uploaded successfully";
   	}else{
   		$msg = "Failed to upload image";
@@ -280,6 +281,14 @@ $total = $stmt->rowCount();
             <input id="information" type="text" name="products" value="products" />
           </div>
           <div class="item">
+            <label for="additional-information"> Location<span>*</span></label>
+            <input id="information" type="text" name="location" />
+          </div>
+          <div class="item">
+            <label for="additional-information"> Size<span>*</span></label>
+            <input id="information" type="text" name="size" />
+          </div>
+          <div class="item">
             <select name="category">
              <option value="" disabled selected>Select Category</option>
              <option value="featured" >Featured</option>
@@ -293,7 +302,7 @@ $total = $stmt->rowCount();
           </div>
           <div class="item">
               <label for="cover">File Of the Product<span>*</span></label>
-              <input type="file" name="productimage" >
+              <input type="file" name="productimage">
           </div>
       </fieldset>
       <div class="btn-block">
@@ -365,7 +374,7 @@ $total = $stmt->rowCount();
                   <span class="fa fa-star checked"></span>
                   <span class="fa fa-star checked"></span>
                   <span class="fa fa-star checked"></span>
-                  <h6><?php echo "{$row->price}"; ?></h6>
+                  <h6>Kes <?php echo number_format($row->price); ?>/=</h6>
                   <p class="card-text">
                   <?php echo "{$row->productinfo}"; ?>
                   </p>
@@ -496,7 +505,7 @@ $total = $stmt->rowCount();
                   <span class="fa fa-star checked"></span>
                   <span class="fa fa-star checked"></span>
                   <span class="fa fa-star checked"></span>
-                  <h6><?php echo "{$row->price}"; ?></h6>
+                  <h6>Kes <?php echo number_format($row->price); ?>/=</h6>
                   <p class="card-text">
                   <?php echo "{$row->productinfo}"; ?>
                   </p>
@@ -603,7 +612,7 @@ $total = $stmt->rowCount();
                   <span class="fa fa-star checked"></span>
                   <span class="fa fa-star checked"></span>
                   <span class="fa fa-star checked"></span>
-                  <h6><?php echo "{$row->price}"; ?></h6>
+                  <h6>Kes <?php echo number_format($row->price); ?>/=</h6>
                   <p class="card-text">
                   <?php echo "{$row->productinfo}"; ?>
                   </p>

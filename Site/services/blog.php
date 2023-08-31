@@ -1,29 +1,28 @@
-<!---book information--->
+<!-- Site Visits -->
 <?php
  require_once '../php/includes/config.php';
- if (isset($_POST['bookbtn'])){
+ if (isset($_POST['sitevisits'])){
 
   $name = $_POST['name'];
-  $email = $_POST['email'];
   $phone = $_POST['phone'];
+  $email = $_POST['email'];
   $location = $_POST['location'];
-  $service = $_POST['service'];
-  $editing = $_POST['editing'];
-  $dateofservice = $_POST['dateofservice'];
+  $preferreddate = $_POST['preferreddate'];
+  $message = $_POST['message'];
   $checkbox = $_POST['checkbox'];
-
-    try {
-        //code...
-        $sql = 'INSERT INTO studiobookings(name,email,phone,location,service,editing,dateofservice,checkbox,Date,Time ) VALUES(?,?,?,?,?,?,?,?,Now(),Now() )';
-        $sth = $DBH->prepare($sql);
-        $sth->execute(array($name,$email,$phone,$location,$service,$editing,$dateofservice,$checkbox));
-        $_SESSION['success'] = "message sent successfully.";
-      } catch (PDOException $e) {
-        //throw $th;
-        echo $e->getMessage();
-      }
-      echo" <script>alert('Booked successfully')</script>
-      <script>window.location = 'studio.php'</script>";
+ 
+  try {
+    //code...
+    $sql = 'INSERT INTO bookings(name,phone,email,location,preferreddate,message,checkbox,Date,Time ) VALUES(?,?,?,?,?,?,?,Now(),Now() )';
+    $sth = $DBH->prepare($sql);
+    $sth->execute(array($name,$phone,$email,$location,$preferreddate,$message,$checkbox ));
+    $_SESSION['success'] = "message sent successfully.";
+  } catch (PDOException $e) {
+    //throw $th;
+    echo $e->getMessage();
+  }
+  echo "<script>alert('Booking was successfully. We will get back to you shortly')</script>
+  <script>window.location = 'blog.php'</script>";
  }
  
  ?>
@@ -244,7 +243,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
     
-    <form action="studio.php" method="POST" enctype="multipart/form-data" style="box-shadow:none;">
+    <form action=" " method="POST" enctype="multipart/form-data" style="box-shadow:none;">
       <div class="modal-body">
       <fieldset>
         
@@ -314,7 +313,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn" data-bs-dismiss="modal">Cancel</button>
-        <button type="submit" name="bookbtn" class="btn btn-primary">Book Now!</button>
+        <button type="submit" name="sitevisits" class="btn btn-primary">Book Now!</button>
       </div>
     </form>
 

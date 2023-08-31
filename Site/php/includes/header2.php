@@ -73,7 +73,7 @@
               <hr class="dropdown-divider" />
             </li>
             <li>
-              <a class="dropdown-item" href="tel:0791386752"><i class="fa fa-phone fa fa-flip-horizontal"></i> Own property Today!</a>
+              <a class="dropdown-item" href="tel:0740027027"><i class="fa fa-phone fa fa-flip-horizontal"></i> Own property Today!</a>
             </li>
           </ul>
           </li>

@@ -95,7 +95,7 @@ $total = $stmt->rowCount();
     <!-- popup -->
   <script type="text/javascript">
     $(window).on('load', function() {
-      $("#myModal2").modal('show');
+      $("#myModal3").modal('show');
     });
   </script>
   
@@ -104,11 +104,11 @@ $total = $stmt->rowCount();
     <!-- popup modal -->
 
   <div class="modal fade" id="myModal3" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog" style="max-width:450px;">
       <div class="modal-content">
         <div class="modal-header">
           <legend class="modal-title " id="staticBackdropLabel" style="border-radius:20px;"> Today's Top Deal</legend>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="$('#myModal2').hide()"></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="$('#myModal3').modal('hide')"></button>
         </div>
         <div class="modal-body">
           <!-- content offer goes here -->
@@ -124,11 +124,11 @@ $total = $stmt->rowCount();
           <h3 class="text-center"><?php echo $offerrow->productname; ?></h3>
             <div class="blog-img" style="margin-left:auto; margin-right:auto; display:block;">
               <?php if($offerrow->ext == 'mp4'){ ?>
-                <video height="100%" controls>
+                <video height="100%" style="max-width:430px;" controls>
                  <source src="<?php echo "php/Admin/offers/". "{$offerrow->productimage}";?>">
                 </video>
                 <?php }else{?>
-                    <img class="offer-image" src="<?php echo "php/Admin/offers/". "{$offerrow->productimage}";?>" height="100%;" />
+                    <img class="offer-image" src="<?php echo "php/Admin/offers/". "{$offerrow->productimage}";?>" height="100%;" style="max-width:430px;" />
               <?php }?>
             </div>
           <p class="text-center p-2"><b><?php echo $offerrow->productinfo; ?></b></p>
@@ -136,7 +136,7 @@ $total = $stmt->rowCount();
           <?php }?>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn" data-bs-dismiss="modal" onclick="$('#myModal2').hide()">Cancel</button>
+            <button type="button" class="btn" data-bs-dismiss="modal" onclick="$('#myModal3').modal('hide')">Cancel</button>
           </div>
 
       </div>
@@ -565,7 +565,7 @@ $total = $stmt->rowCount();
     <main class="mt-5">
 
     <div class="golden chance properties" style="margin-left:auto;margin-right:auto;display:block;text-align:center;">
-      <h4 >Our Property</h4>
+      <h4 >Featured Property</h4>
     </div>
     <div class="alertMsg" id="alertMsg">Thank you for showing interest in our properties</div>
     <br>
@@ -613,9 +613,9 @@ $total = $stmt->rowCount();
         </div>
       </nav>
 
-      <div class="container">
+      <div class="properties" style="overflow-x:hidden;">
       <!--- database property -->
-      <section class="text-center mb-4" style="#overflow:scroll;#height:700px; #max-width:950px; margin-left:auto;margin-right:auto;display:block;" id="store">
+      <section class="text-center mb-4" style="margin-left:auto;margin-right:auto;display:block;" id="store">
         <div class="row">
           <div id="product-grid">
             <?php
@@ -628,13 +628,14 @@ $total = $stmt->rowCount();
                   <div class="product-item card" style="width:270px;height:450px;">
                     <iframe name="votar" style="display:none;"></iframe>
                     <form method="post" target="votar" action="sharazstore.php?action=add&code=<?php echo $product_array[$key]["code"]; ?>" onsubmit="showMsg()" style="box-shadow:none;">
+                      <div class="btn-warning" style="position:absolute;padding:10px 20px;margin-left:-2px;transform: skew(-20deg);"><?php echo $product_array[$key]["category"]; ?></div>
                       <div class="product-image">
                         <?php if ($product_array[$key]['ext'] == 'mp4') { ?>
-                          <video style="width:300px; height:300px;margin-top:-50px;" controls>
+                          <video style="width:300px; height:310px;margin-top:-70px;" controls>
                             <source src="<?php echo "php/Admin/products/" . $product_array[$key]['productimage']; ?>" style="max-width:250px; height:200px;margin-left:auto;margin-right:auto;display:block;">
                           </video>
                         <?php } else { ?>
-                          <img src="<?php echo "php/Admin/products/" . $product_array[$key]['productimage']; ?>" style="width:250px; height:250px;margin-left:auto;margin-right:auto;display:block;">
+                          <img src="<?php echo "php/Admin/products/" . $product_array[$key]['productimage']; ?>" style="width:300px; height:250px;margin-left:auto;margin-right:auto;display:block;">
                         <?php } ?>
                       </div>
                       <div class="product-tile-footer"><br><br><br><br>
@@ -645,7 +646,7 @@ $total = $stmt->rowCount();
                           <span class="fa fa-star checked"></span>
                           <span class="fa fa-star checked"></span>
                           <span class="fa fa-star checked"></span>
-                          <h6><?php echo $product_array[$key]["price"]; ?> ksh</h6>
+                          <h6>Kes <?php echo number_format($product_array[$key]["price"]); ?>/=</h6>
                           <p class="card-text show-read-more">
                             <?php echo $product_array[$key]["productinfo"]; ?>
                           </p>
@@ -683,10 +684,12 @@ $total = $stmt->rowCount();
                         if ($stmt->rowCount() == 1) {
                           while ($row = $stmt->fetchObject()) {
                         ?>
-                            <a class="btn btn-danger" style="cursor: no-drop;">Property Sold Out</a>
+                            <!-- <a class="btn btn-danger" style="cursor: no-drop;">Property Sold Out</a> -->
+                            <a class="btn btn-danger" href="services/property.php?property=<?php echo $product_array[$key]["id"]; ?>">Property Sold Out</a>
                           <?php }
                         } else { ?>
-                          <button class="viewbtn" onclick="showMsg()">View Property</button>
+                           <!-- <button class="viewbtn" onclick="showMsg()">View Property</button> -->
+                           <a class="btn viewbtn" href="services/property.php?property=<?php echo $product_array[$key]["id"]; ?>">View Property</a> 
                         <?php } ?>
 
                       </div>
@@ -697,8 +700,8 @@ $total = $stmt->rowCount();
                 <script>
                    function showMsg() {
                    $("#alertMsg").fadeIn('slow', function() {
-                   $(this).delay(1500).fadeOut('slow');
-                   window.location = 'services/property.php?property=<?php echo $product_array[$key]["id"]; ?>'
+                   $(this).delay(3000).fadeOut('slow');
+                   window.location = 'properties.php'
                   });
                  }
                 </script>
@@ -706,20 +709,21 @@ $total = $stmt->rowCount();
                 }
               }
             } else {
-              $product_array = $db_handle->runQuery("SELECT * FROM products ORDER BY id ASC ");
+              $product_array = $db_handle->runQuery("SELECT * FROM products WHERE category = 'featured' ORDER BY id ASC ");
               if (!empty($product_array)) {
                 foreach ($product_array as $key => $value) {
                 ?>
                   <div class="product-item card" style="width:270px;height:450px;box-shadow:none;">
                     <iframe name="votar" style="display:none;"></iframe>
                     <form method="post" target="votar" action="sharazstore.php?action=add&code=<?php echo $product_array[$key]["code"]; ?>" onsubmit="showMsg()" style="box-shadow:none;">
+                      <div class="btn-warning" style="position:absolute;padding:10px 20px;margin-left:-2px;transform: skew(-20deg);"><?php echo $product_array[$key]["category"]; ?></div>
                       <div class="product-image">
                         <?php if ($product_array[$key]['ext'] == 'mp4') { ?>
-                          <video style="width:300px; height:300px;margin-top:-50px;" controls>
+                          <video style="width:300px; height:310px;margin-top:-70px;" controls>
                             <source src="<?php echo "php/Admin/products/" . $product_array[$key]['productimage']; ?>" style="max-width:250px; height:200px;margin-left:auto;margin-right:auto;display:block;">
                           </video>
                         <?php } else { ?>
-                          <img src="<?php echo "php/Admin/products/" . $product_array[$key]['productimage']; ?>" style="width:250px; height:250px;margin-left:auto;margin-right:auto;display:block;">
+                          <img src="<?php echo "php/Admin/products/" . $product_array[$key]['productimage']; ?>" style="width:300px; height:250px;margin-left:auto;margin-right:auto;display:block;">
                         <?php } ?>
                       </div>
                       <div class="product-tile-footer"><br><br><br><br>
@@ -730,7 +734,7 @@ $total = $stmt->rowCount();
                           <span class="fa fa-star checked"></span>
                           <span class="fa fa-star checked"></span>
                           <span class="fa fa-star checked"></span>
-                          <h6><?php echo $product_array[$key]["price"]; ?> ksh</h6>
+                          <h6>Kes <?php echo number_format($product_array[$key]["price"]); ?>/=</h6>
                           <p class="card-text show-read-more">
                             <?php echo $product_array[$key]["productinfo"]; ?>
                           </p>
@@ -768,10 +772,12 @@ $total = $stmt->rowCount();
                         if ($stmt->rowCount() == 1) {
                           while ($row = $stmt->fetchObject()) {
                         ?>
-                            <a class="btn btn-danger" style="cursor: no-drop;">Property Sold Out</a>
+                            <!-- <a class="btn btn-danger" style="cursor: no-drop;">Property Sold Out</a> -->
+                            <a class="btn btn-danger" href="services/property.php?property=<?php echo $product_array[$key]["id"]; ?>">Property Sold Out</a>
                           <?php }
                         } else { ?>
-                          <button class="viewbtn" onclick="showMsg()">View Property</button>
+                           <!-- <button class="viewbtn" onclick="showMsg()">View Property</button> -->
+                           <a class="btn viewbtn" href="services/property.php?property=<?php echo $product_array[$key]["id"]; ?>">View Property</a> 
                         <?php } ?>
 
 
@@ -783,8 +789,8 @@ $total = $stmt->rowCount();
                 <script>
                    function showMsg() {
                    $("#alertMsg").fadeIn('slow', function() {
-                   $(this).delay(1500).fadeOut('slow');
-                   window.location = 'services/property.php?property=<?php echo $product_array[$key]["id"]; ?>'
+                   $(this).delay(3000).fadeOut('slow');
+                   window.location = 'properties.php'
                   });
                  }
                 </script>

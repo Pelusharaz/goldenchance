@@ -112,6 +112,10 @@ session_start();
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
     />
+
+    <!-- length of properties -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
     <!-- Fonts from Google-->
     <link
       rel="stylesheet"
@@ -492,60 +496,62 @@ session_start();
         <section class="text-center mb-4" style="margin-left:auto;margin-right:auto;display:block;" id="store" >
         <div class="row" >
         <div id="product-grid">
-          <?php
-          if (isset($_POST['submit'])){
-            $search = $_POST['search'];
-            $product_array = $db_handle->runQuery("SELECT * FROM products where (category LIKE '%" . $_POST["search"] . "%') OR (productname LIKE '%" . $_POST["search"] . "%') OR (productinfo LIKE '%" . $_POST["search"] . "%')OR (price LIKE '%" . $_POST["search"] . "%') OR (products LIKE '%" . $_POST["search"] . "%')");
-            if (!empty($product_array)) { 
-              foreach($product_array as $key=>$value){
-                ?>
-          <div class="product-item card" style="width:270px;height:450px;">
-          <iframe name="votar" style="display:none;"></iframe>
-            <form method="post" target="votar" action="sharazstore.php?action=add&code=<?php echo $product_array[$key]["code"]; ?>" onsubmit="showMsg()" style="box-shadow:none;">
-            <div class="product-image">
-              <?php if($product_array[$key]['ext'] == 'mp4'){ ?>
-                <video style="width:300px; height:300px;margin-top:-50px;" controls>
-                 <source src="<?php echo "php/Admin/products/".$product_array[$key]['productimage'];?>" style="max-width:250px; height:200px;margin-left:auto;margin-right:auto;display:block;">
-                </video>
-                <?php }else{?>
-                  <img src="<?php echo "php/Admin/products/".$product_array[$key]['productimage'];?>" style="width:250px; height:250px;margin-left:auto;margin-right:auto;display:block;">
-              <?php }?>
-            </div>
-            <div class="product-tile-footer"><br><br><br><br>
-            <div class="product-title"><h5><?php echo $product_array[$key]["productname"]; ?></h5>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <h6><?php echo $product_array[$key]["price"]; ?> ksh</h6>
-            <p class="card-text show-read-more">
-              <?php echo $product_array[$key]["productinfo"]; ?>
-            </p>
-            <script>
-                      $(document).ready(function() {
-                        var maxLength = 50;
-                        $(".show-read-more").each(function() {
-                          var myStr = $(this).text();
-                          if ($.trim(myStr).length > maxLength) {
-                            var newStr = myStr.substring(0, maxLength);
-                            var removedStr = myStr.substring(maxLength, $.trim(myStr).length);
-                            $(this).empty().html(newStr);
-                            $(this).append(' <a href="javascript:void(0);" class="read-more">...</a>');
-                            $(this).append('<span class="more-text">' + removedStr + '</span>');
-                          }
-                        });
-                        $(".read-more").click(function() {
-                          $(this).siblings(".more-text").contents().unwrap();
-                          $(this).remove();
-                        });
-                      });
-            </script>
-            <style>
-              .show-read-more .more-text {
-                  display: none;
-              }
-            </style>
+        <?php
+            if (isset($_POST['submit'])) {
+              $search = $_POST['search'];
+              $product_array = $db_handle->runQuery("SELECT * FROM products where (category LIKE '%" . $_POST["search"] . "%') OR (productname LIKE '%" . $_POST["search"] . "%') OR (productinfo LIKE '%" . $_POST["search"] . "%')OR (price LIKE '%" . $_POST["search"] . "%') OR (products LIKE '%" . $_POST["search"] . "%')");
+              if (!empty($product_array)) {
+                foreach ($product_array as $key => $value) {
+            ?>
+                  <div class="product-item card" style="width:270px;height:450px;">
+                    <iframe name="votar" style="display:none;"></iframe>
+                    <form method="post" target="votar" action="sharazstore.php?action=add&code=<?php echo $product_array[$key]["code"]; ?>" onsubmit="showMsg()" style="box-shadow:none;">
+                    <div class="btn-warning" style="position:absolute;padding:10px 20px;margin-left:-2px;transform: skew(-20deg);"><?php echo $product_array[$key]["category"]; ?></div>
+                      <div class="product-image">
+                        <?php if ($product_array[$key]['ext'] == 'mp4') { ?>
+                          <video style="width:300px; height:310px;margin-top:-70px;" controls>
+                            <source src="<?php echo "php/Admin/products/" . $product_array[$key]['productimage']; ?>" style="max-width:250px; height:200px;margin-left:auto;margin-right:auto;display:block;">
+                          </video>
+                        <?php } else { ?>
+                          <img src="<?php echo "php/Admin/products/" . $product_array[$key]['productimage']; ?>" style="width:300px; height:250px;margin-left:auto;margin-right:auto;display:block;">
+                        <?php } ?>
+                      </div>
+                      <div class="product-tile-footer"><br><br><br><br>
+                        <div class="product-title">
+                          <h5><?php echo $product_array[$key]["productname"]; ?></h5>
+                          <span class="fa fa-star checked"></span>
+                          <span class="fa fa-star checked"></span>
+                          <span class="fa fa-star checked"></span>
+                          <span class="fa fa-star checked"></span>
+                          <span class="fa fa-star checked"></span>
+                          <h6>Kes <?php echo number_format($product_array[$key]["price"]); ?>/=</h6>
+                          <p class="card-text show-read-more">
+                            <?php echo $product_array[$key]["productinfo"]; ?>
+                          </p>
+                          <script>
+                            $(document).ready(function() {
+                              var maxLength = 60;
+                              $(".show-read-more").each(function() {
+                                var myStr = $(this).text();
+                                if ($.trim(myStr).length > maxLength) {
+                                  var newStr = myStr.substring(0, maxLength);
+                                  var removedStr = myStr.substring(maxLength, $.trim(myStr).length);
+                                  $(this).empty().html(newStr);
+                                  $(this).append(' <a href="javascript:void(0);" class="read-more">...</a>');
+                                  $(this).append('<span class="more-text">' + removedStr + '</span>');
+                                }
+                              });
+                              $(".read-more").click(function() {
+                                $(this).siblings(".more-text").contents().unwrap();
+                                $(this).remove();
+                              });
+                            });
+                          </script>
+                          <style>
+                            .show-read-more .more-text {
+                              display: none;
+                            }
+                          </style>
                       <?php
                         require_once 'php/includes/config.php';
                         $sql = "SELECT * FROM soldout WHERE propertyId = '" . $product_array[$key]["id"] . "'";
@@ -560,66 +566,68 @@ session_start();
                           <a class="viewbtn" data-bs-toggle="modal" data-bs-target="#vendorcontact">Ask Vendor to Call You</a>
                       <?php } ?>
             
-          </div> 
+                  </div> 
     
-        </div>
-        </form>
-		    </div>
+                 </div>
+                 </form>
+		            </div>
         <?php
         }
       }
     }else{
-    $product_array = $db_handle->runQuery("SELECT * FROM products ORDER BY id ASC ");
-	  if (!empty($product_array)) { 
-		foreach($product_array as $key=>$value){
-	?>
-    <div class="product-item card" style="width:270px;height:450px;box-shadow:none;">
-    <iframe name="votar" style="display:none;"></iframe>
-			<form method="post" target="votar" action="sharazstore.php?action=add&code=<?php echo $product_array[$key]["code"]; ?>" onsubmit="showMsg()" style="box-shadow:none;">
-			<div class="product-image">
-              <?php if($product_array[$key]['ext'] == 'mp4'){ ?>
-                <video style="width:300px; height:300px;margin-top:-50px;" controls>
-                 <source src="<?php echo "php/Admin/products/".$product_array[$key]['productimage'];?>" style="max-width:250px; height:200px;margin-left:auto;margin-right:auto;display:block;">
-                </video>
-                <?php }else{?>
-                  <img src="<?php echo "php/Admin/products/".$product_array[$key]['productimage'];?>" style="width:250px; height:250px;margin-left:auto;margin-right:auto;display:block;">
-              <?php }?>
-      </div>
-			<div class="product-tile-footer"><br><br><br><br>
-			<div class="product-title"><h5><?php echo $product_array[$key]["productname"]; ?></h5>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <h6><?php echo $product_array[$key]["price"]; ?> ksh</h6>
-        <p class="card-text show-read-more">
-          <?php echo $product_array[$key]["productinfo"]; ?>
-        </p>
-            <script>
-                      $(document).ready(function() {
-                        var maxLength = 50;
-                        $(".show-read-more").each(function() {
-                          var myStr = $(this).text();
-                          if ($.trim(myStr).length > maxLength) {
-                            var newStr = myStr.substring(0, maxLength);
-                            var removedStr = myStr.substring(maxLength, $.trim(myStr).length);
-                            $(this).empty().html(newStr);
-                            $(this).append(' <a href="javascript:void(0);" class="read-more">...</a>');
-                            $(this).append('<span class="more-text">' + removedStr + '</span>');
-                          }
-                        });
-                        $(".read-more").click(function() {
-                          $(this).siblings(".more-text").contents().unwrap();
-                          $(this).remove();
-                        });
+      $product_array = $db_handle->runQuery("SELECT * FROM products ORDER BY id ASC ");
+      if (!empty($product_array)) {
+        foreach ($product_array as $key => $value) {
+        ?>
+          <div class="product-item card" style="width:270px;height:450px;box-shadow:none;">
+            <iframe name="votar" style="display:none;"></iframe>
+            <form method="post" target="votar" action="sharazstore.php?action=add&code=<?php echo $product_array[$key]["code"]; ?>" onsubmit="showMsg()" style="box-shadow:none;">
+              <div class="btn-warning" style="position:absolute;padding:10px 20px;margin-left:-2px;transform: skew(-20deg);"><?php echo $product_array[$key]["category"]; ?></div>
+              <div class="product-image">
+                <?php if ($product_array[$key]['ext'] == 'mp4') { ?>
+                  <video style="width:300px; height:310px;margin-top:-70px;" controls>
+                    <source src="<?php echo "php/Admin/products/" . $product_array[$key]['productimage']; ?>" style="max-width:250px; height:200px;margin-left:auto;margin-right:auto;display:block;">
+                  </video>
+                <?php } else { ?>
+                  <img src="<?php echo "php/Admin/products/" . $product_array[$key]['productimage']; ?>" style="width:300px; height:250px;margin-left:auto;margin-right:auto;display:block;">
+                <?php } ?>
+              </div>
+              <div class="product-tile-footer"><br><br><br><br>
+                <div class="product-title">
+                  <h5><?php echo $product_array[$key]["productname"]; ?></h5>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <h6>Kes <?php echo number_format($product_array[$key]["price"]); ?>/=</h6>
+                  <p class="card-text show-read-more">
+                    <?php echo $product_array[$key]["productinfo"]; ?>
+                  </p>
+                  <script>
+                    $(document).ready(function() {
+                      var maxLength = 60;
+                      $(".show-read-more").each(function() {
+                        var myStr = $(this).text();
+                        if ($.trim(myStr).length > maxLength) {
+                          var newStr = myStr.substring(0, maxLength);
+                          var removedStr = myStr.substring(maxLength, $.trim(myStr).length);
+                          $(this).empty().html(newStr);
+                          $(this).append(' <a href="javascript:void(0);" class="read-more">...</a>');
+                          $(this).append('<span class="more-text">' + removedStr + '</span>');
+                        }
                       });
-            </script>
-            <style>
-              .show-read-more .more-text {
-                  display: none;
-              }
-            </style>
+                      $(".read-more").click(function() {
+                        $(this).siblings(".more-text").contents().unwrap();
+                        $(this).remove();
+                      });
+                    });
+                  </script>
+                  <style>
+                    .show-read-more .more-text {
+                      display: none;
+                    }
+                  </style>
           <?php
             require_once 'php/includes/config.php';
             $sql="SELECT * FROM soldout WHERE propertyId = '".$product_array[$key]["id"]."'";

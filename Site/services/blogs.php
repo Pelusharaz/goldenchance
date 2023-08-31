@@ -1,29 +1,28 @@
-<!---book information--->
+<!-- Site Visits -->
 <?php
  require_once '../php/includes/config.php';
- if (isset($_POST['bookbtn'])){
+ if (isset($_POST['sitevisits'])){
 
   $name = $_POST['name'];
-  $email = $_POST['email'];
   $phone = $_POST['phone'];
+  $email = $_POST['email'];
   $location = $_POST['location'];
-  $service = $_POST['service'];
-  $editing = $_POST['editing'];
-  $dateofservice = $_POST['dateofservice'];
+  $preferreddate = $_POST['preferreddate'];
+  $message = $_POST['message'];
   $checkbox = $_POST['checkbox'];
-
-    try {
-        //code...
-        $sql = 'INSERT INTO studiobookings(name,email,phone,location,service,editing,dateofservice,checkbox,Date,Time ) VALUES(?,?,?,?,?,?,?,?,Now(),Now() )';
-        $sth = $DBH->prepare($sql);
-        $sth->execute(array($name,$email,$phone,$location,$service,$editing,$dateofservice,$checkbox));
-        $_SESSION['success'] = "message sent successfully.";
-      } catch (PDOException $e) {
-        //throw $th;
-        echo $e->getMessage();
-      }
-      echo" <script>alert('Booked successfully')</script>
-      <script>window.location = 'studio.php'</script>";
+ 
+  try {
+    //code...
+    $sql = 'INSERT INTO bookings(name,phone,email,location,preferreddate,message,checkbox,Date,Time ) VALUES(?,?,?,?,?,?,?,Now(),Now() )';
+    $sth = $DBH->prepare($sql);
+    $sth->execute(array($name,$phone,$email,$location,$preferreddate,$message,$checkbox ));
+    $_SESSION['success'] = "message sent successfully.";
+  } catch (PDOException $e) {
+    //throw $th;
+    echo $e->getMessage();
+  }
+  echo "<script>alert('Booking was successfully. We will get back to you shortly')</script>
+  <script>window.location = 'blogs.php'</script>";
  }
  
  ?>
@@ -245,7 +244,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
     
-    <form action="studio.php" method="POST" enctype="multipart/form-data" style="box-shadow:none;">
+    <form action=" " method="POST" enctype="multipart/form-data" style="box-shadow:none;">
       <div class="modal-body">
       <fieldset>
         
@@ -315,7 +314,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn" data-bs-dismiss="modal">Cancel</button>
-        <button type="submit" name="bookbtn" class="btn btn-primary">Book Now!</button>
+        <button type="submit" name="sitevisits" class="btn btn-primary">Book Now!</button>
       </div>
     </form>
 
@@ -405,7 +404,7 @@
     <div class="alertMsg" id="alertMsg">Thank you for showing interest in our properties</div>
     <br>
 
-      <div class="news-blogs" style="background-color:rgba(0, 0, 0, 0.2);padding-top:20px;">
+      <div class="news-blogs" style="background-color:rgba(0, 0, 0, 0.2);padding-top:20px;overflow-x:hidden;">
           <div class="header"style="margin:auto;display:block;text-align:center;">
             <h4 style="color:blue; font-weight:bolder;">News and Blogs</h4>
           </div>
@@ -421,7 +420,7 @@
            ?>
           
            <div class="col-lg-3 blog">
-             <div class="card" style="width:auto;height:auto;margin:10px;0px; margin-left:auto;margin-right:auto;display:block;" >
+             <div class="card" style="width:300px;height:500px;margin:10px;0px; margin-left:auto;margin-right:auto;display:block;" >
               <div class="blog-img" style="margin:10px;">
                 <h5 class="card-title" style="font-weight: bolder;"><?php echo $row->blogtitle ?></h5>
                 <?php if($row->ext == 'mp4'){ ?>
@@ -441,7 +440,7 @@
                   <p id="text" class="show-read-more"><?php echo $row->bloginfo ?></p>
                     <script>
                       $(document).ready(function() {
-                        var maxLength = 200;
+                        var maxLength = 100;
                         $(".show-read-more").each(function() {
                           var myStr = $(this).text();
                           if ($.trim(myStr).length > maxLength) {
