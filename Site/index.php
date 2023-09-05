@@ -125,7 +125,7 @@ if (isset($_POST['enquiries'])) {
   <!-- popup -->
   <script type="text/javascript">
     $(window).on('load', function() {
-      $("#myModal#3").modal('show');
+      $("#myModal3").modal('show');
     });
   </script>
 </head>
