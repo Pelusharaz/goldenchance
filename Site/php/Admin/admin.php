@@ -27,17 +27,56 @@ $total = $stmt->rowCount();
   $code = $_POST['code'];
   $location = $_POST['location'];
   $size = $_POST['size'];
-  $productimage = $_FILES['productimage']['name'];
-  $ext = pathinfo($productimage , PATHINFO_EXTENSION);
+  $newfilename= array($_FILES['productimage']['name']);
+  foreach ($newfilename as $impnewfilename) {
+      $newfilename_val = implode(',', $impnewfilename);
+    }
+  
+  // Count total files
+  $countfiles = count($_FILES['productimage']['name']);
+
+  // Loop all files
+  for($i = 0; $i < $countfiles; $i++) {
+  
+    // File name
+    $filename = $_FILES['productimage']['name'][$i];
+    // Location
+    $target_file = 'products/'.$filename;
+  
+    // file extension
+      //$file_extension=array();
+      $file_extension = pathinfo($filename, PATHINFO_EXTENSION);
+      $file_extension = strtolower($file_extension);
+      
+      /*
+      foreach ($file_extension as $ext) {
+      $ext_val = implode(',', $ext);
+      }*/
+    // Valid image extension
+    $valid_extension = array("png","jpeg","jpg","gif","mp4");
+    
+    if(in_array($file_extension, $valid_extension)) {
+
+      // Upload file
+      if(move_uploaded_file($_FILES['productimage']['tmp_name'][$i],$target_file)
+      ) 
+  
+  
+  /*$productimage= array($_FILES['productimage']['name']);
+  foreach ($productimage as $productimag) {
+    $productimage_val = implode(',', $productimag);
+  }
+  $ext = pathinfo($productimage_val, PATHINFO_EXTENSION);
+  
   
    // image file directory
-   $target = "products/".basename($productimage);
+   $target = "products/".basename($productimage_val);*/
   
     try {
         //code...
         $sql = 'INSERT INTO products(productname,price,productinfo,productimage,ext,category,products,code,location,size,Date,Time ) VALUES(?,?,?,?,?,?,?,?,?,?,Now(),Now() ) ';
         $sth = $DBH->prepare($sql);
-        $sth->execute(array($productname,$price,$productinfo,$productimage,$ext,$category,$products,$code,$location,$size));
+        $sth->execute(array($productname,$price,$productinfo,$filename,$file_extension,$category,$products,$code,$location,$size));
         $_SESSION['success'] = "message sent successfully.";
       } catch (PDOException $e) {
         //throw $th;
@@ -45,13 +84,14 @@ $total = $stmt->rowCount();
       }
       echo "<script>alert('Property Uploaded Successfully')</script>
 		  ";
-    
+    }
+  }
     //uploading image
-    if (move_uploaded_file($_FILES['productimage']['tmp_name'], $target)) {
+    /*if (move_uploaded_file($_FILES['productimage']['tmp_name'], $target)) {
       $msg = "property uploaded successfully";
   	}else{
   		$msg = "Failed to upload image";
-  	}
+  	}*/
 
  }
  ?>
@@ -77,6 +117,9 @@ $total = $stmt->rowCount();
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
     />
+    <!-- Jquery multiple photos -->
+    <script type="text/javascript" src=" https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
     <!-- Styles -->
     <link rel ="stylesheet" type = "text/css" href ="css/admin.css">
     <link rel="stylesheet" href="../../css/styles.css" />
@@ -296,15 +339,34 @@ $total = $stmt->rowCount();
              <option value="hotdeals">Hot Deals</option>
             </select>
           </div>
-          <div class="item">
+          <div class="item" style="display:none;">
             <label for="information"> Enter Unique Code<span>*</span></label>
-            <input id="information" type="text" name="code" />
+            <input id="information" type="text" name="code" value="<?php $uniquecode= uniqid('pr'); echo $uniquecode;?>" />
           </div>
           <div class="item">
               <label for="cover">File Of the Product<span>*</span></label>
-              <input type="file" name="productimage">
+              <input onchange="readURL(this);" id="uploadedImages" type="file" name="productimage[]" multiple="multiple">
           </div>
+          <div class="item">
+            <script type="text/javascript">
+              var readURL = function(input) {
+               $('#up_images').empty();   
+                 var number = 0;
+                 $.each(input.files, function(value) {
+                 var reader = new FileReader();
+                 reader.onload = function (e) {
+                 var id = (new Date).getTime();
+                number++;
+               $('#up_images').prepend('<img style="margin-right:10px;" id='+id+' src='+e.target.result+' width="100px" height="100px" data-index='+number+' onclick="removePreviewImage('+id+')"/><video style="margin-right:10px;" id='+id+' src='+e.target.result+' width="100px" height="100px" data-index='+number+' onclick="removePreviewImage('+id+')" controls></video>')
+              };
+              reader.readAsDataURL(input.files[value]);
+             }); 
+             }
+            </script>
+          </div>
+          <div id ="up_images" class="item" style="display:flex;"></div>
       </fieldset>
+          
       <div class="btn-block">
         <button type="submit" name="product"style="border-radius: 25px;">Submit</button>
       </div>
@@ -779,6 +841,7 @@ $total = $stmt->rowCount();
       <!-- Copyright -->
     </footer>
   </body>
+  
   <!-- Scripts -->
   <script type="text/javascript" src="../../js/script1.js"></script>
   <script type="text/javascript"></script>

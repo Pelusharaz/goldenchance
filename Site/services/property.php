@@ -398,24 +398,7 @@
     <div class="alertMsg" id="alertMsg">Thank you for showing interest in our properties</div>
     <br>
         
-    <div class="grid-gallery" style="margin-top:-80px;">
-        <div class="row"> 
-         <div class="column single">
-          <img src="../img/land 1.jpg" style="width:100%; height:103%;">
-         </div>
-         <div class="column">
-            <img src="../img/land 1.jpg" style="width:100%; height:50%;">
-            <img src="../img/land 1.jpg" style="width:100%; height:50%;">
-         </div>  
-         <div class="column single">
-           <img src="../img/land 1.jpg" style="width:100%;height:103%;">
-         </div>
-         <div class="column">
-           <img src="../img/land 1.jpg" style="width:100%; height:50%;">
-           <img src="../img/land 1.jpg" style="width:100%; height:50%;">
-         </div>
-        </div>
-    </div>
+    
         <?php
             require_once '../php/includes/config.php';
             $sql="SELECT * FROM products where id = '" .$_GET["property"] . "' ";
@@ -424,6 +407,54 @@
             while($row = $stmt->fetchObject()) {
             
         ?>
+
+        <div class="grid-gallery" style="margin-top:-80px;">
+        <div class="row"> 
+         <div class="column single">
+            <?php if($row->ext == 'mp4'){ ?>
+                 <video style="width:100%; height:103%;margin-top:-50px;" controls>
+                   <source src="<?php echo "../php/Admin/products/". "{$row->productimage}";?>" style="max-width:250px; height:200px;margin-left:auto;margin-right:auto;display:block;">
+                 </video>
+                <?php }else{?>
+                    <img src="<?php echo "../php/Admin/products/". "{$row->productimage}";?>" style="width:100%; height:103%;margin-left:auto;margin-right:auto;display:block;">
+            <?php }?>
+          <!-- <img src="../img/land 1.jpg" style="width:100%; height:103%;"> -->
+         </div>
+         <div class="column">
+            <?php if($row->ext == 'mp4'){ ?>
+                 <video style="width:100%; height:50%;margin-top:-50px;" controls>
+                   <source src="<?php echo "../php/Admin/products/". "{$row->productimage}";?>" style="max-width:250px; height:200px;margin-left:auto;margin-right:auto;display:block;">
+                 </video>
+                <?php }else{?>
+                    <img src="<?php echo "../php/Admin/products/". "{$row->productimage}";?>" style="width:100%; height:50%;margin-left:auto;margin-right:auto;display:block;">
+            <?php }?>
+            <!-- <img src="../img/land 1.jpg" style="width:100%; height:50%;"> -->
+            <img src="../img/land 1.jpg" style="width:100%; height:50%;">
+         </div>  
+         <div class="column single">
+           <?php if($row->ext == 'mp4'){ ?>
+                 <video style="width:100%;height:103%;margin-top:-50px;" controls>
+                   <source src="<?php echo "../php/Admin/products/". "{$row->productimage}";?>" style="max-width:250px; height:200px;margin-left:auto;margin-right:auto;display:block;">
+                 </video>
+                <?php }else{?>
+                    <img src="<?php echo "../php/Admin/products/". "{$row->productimage}";?>" style="width:100%; height:103%;margin-left:auto;margin-right:auto;display:block;">
+            <?php }?>
+           <!-- <img src="../img/land 1.jpg" style="width:100%;height:103%;"> -->
+         </div>
+         <div class="column">
+            <?php if($row->ext == 'mp4'){ ?>
+                 <video style="width:100%; height:50%;margin-top:-50px;" controls>
+                   <source src="<?php echo "../php/Admin/products/". "{$row->productimage}";?>" style="max-width:250px; height:200px;margin-left:auto;margin-right:auto;display:block;">
+                 </video>
+                <?php }else{?>
+                    <img src="<?php echo "../php/Admin/products/". "{$row->productimage}";?>" style="width:100%; height:50%;margin-left:auto;margin-right:auto;display:block;">
+            <?php }?>
+           <!-- <img src="../img/land 1.jpg" style="width:100%; height:50%;"> -->
+           <img src="../img/land 1.jpg" style="width:100%; height:50%;">
+         </div>
+        </div>
+        
+    </div>
         <div class="container news-blogs" style="padding-top:20px;margin-top:20px;">
           <div class="header" style="display:flex;">
             <div class="available"style="margin-left:10px;">

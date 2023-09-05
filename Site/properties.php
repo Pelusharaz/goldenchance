@@ -493,7 +493,7 @@ session_start();
 
         <!--- database property -->
         
-        <section class="text-center mb-4" style="margin-left:auto;margin-right:auto;display:block;" id="store" >
+        <section class="text-center mb-4" style="margin-left:auto;margin-right:auto;display:block;overflow-x:hidden;" id="store" >
         <div class="row" >
         <div id="product-grid">
         <?php
@@ -503,6 +503,7 @@ session_start();
               if (!empty($product_array)) {
                 foreach ($product_array as $key => $value) {
             ?>
+                <a style="color:black;" title="see details of property" href="services/property.php?property=<?php echo $product_array[$key]["id"]; ?>">
                   <div class="product-item card" style="width:270px;height:450px;">
                     <iframe name="votar" style="display:none;"></iframe>
                     <form method="post" target="votar" action="sharazstore.php?action=add&code=<?php echo $product_array[$key]["code"]; ?>" onsubmit="showMsg()" style="box-shadow:none;">
@@ -571,6 +572,7 @@ session_start();
                  </div>
                  </form>
 		            </div>
+              </a>
         <?php
         }
       }
@@ -579,6 +581,7 @@ session_start();
       if (!empty($product_array)) {
         foreach ($product_array as $key => $value) {
         ?>
+          <a style="color:black;" title="see details of property" href="services/property.php?property=<?php echo $product_array[$key]["id"]; ?>">
           <div class="product-item card" style="width:270px;height:450px;box-shadow:none;">
             <iframe name="votar" style="display:none;"></iframe>
             <form method="post" target="votar" action="sharazstore.php?action=add&code=<?php echo $product_array[$key]["code"]; ?>" onsubmit="showMsg()" style="box-shadow:none;">
@@ -645,6 +648,7 @@ session_start();
 			</div>
 			</form>
     </div>
+    </a>
     <?php
         }
       }
