@@ -56,32 +56,31 @@
         <ul class="reach-us">
           <h5 style="color:blue; font-weight:bolder;">Follow us on our Socials</h5>
           <div class="container pt-4" style="margin-left:-20px;margin-top:-30px;">
-           <!-- Section: Social media -->
-      <section class="mb-4">
-        <!-- Facebook -->
-        <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="https://www.facebook.com/profile.php?id=100064267020188" target="_blank" role="button" data-mdb-ripple-color="dark"><i class="fab fa-facebook-f"></i></a>
+            <!-- Section: Social media -->
+            <section class="mb-4">
+               <!-- Facebook -->
+               <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="https://www.facebook.com/profile.php?id=100064267020188" target="_blank" role="button" data-mdb-ripple-color="dark"><i class="fab fa-facebook-f"></i></a>
 
-        <!-- Twitter -->
-        <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="https://twitter.com/GoldenchanceLtd" target="_blank" role="button" data-mdb-ripple-color="dark"><i class="fab fa-twitter"></i></a>
+              <!-- Twitter -->
+              <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="https://twitter.com/GoldenchanceLtd" target="_blank" role="button" data-mdb-ripple-color="dark"><i class="fab fa-twitter"></i></a>
 
-        <!-- Google
-        <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button" data-mdb-ripple-color="dark"><i class="fab fa-google"></i></a> -->
+              <!-- Google
+              <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button" data-mdb-ripple-color="dark"><i class="fab fa-google"></i></a> -->
 
-        <!-- Instagram -->
-        <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="https://www.instagram.com/goldenchancerealestatelimited/" target="_blank" role="button" data-mdb-ripple-color="dark"><i class="fab fa-instagram"></i></a>
+              <!-- Instagram -->
+              <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="https://www.instagram.com/goldenchancerealestatelimited/" target="_blank" role="button" data-mdb-ripple-color="dark"><i class="fab fa-instagram"></i></a>
 
-        <!-- Linkedin
-        <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button" data-mdb-ripple-color="dark"><i class="fab fa-linkedin"></i></a> -->
+              <!-- Linkedin
+              <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button" data-mdb-ripple-color="dark"><i class="fab fa-linkedin"></i></a> -->
 
-        <!-- whats app -->
-        <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="https://wa.me/+254740027027" target="_blank" role="button" data-mdb-ripple-color="dark"><i class="fab fa-whatsapp"></i></a>
+              <!-- whats app -->
+              <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="https://wa.me/+254740027027" target="_blank" role="button" data-mdb-ripple-color="dark"><i class="fab fa-whatsapp"></i></a>
 
-        <!-- Youtube -->
-        <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="https://www.youtube.com/@GoldenChanceRealEstate" target="_blank" role="button" data-mdb-ripple-color="dark"><i class="fab fa-youtube"></i></a>
+              <!-- Youtube -->
+              <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="https://www.youtube.com/@GoldenChanceRealEstate" target="_blank" role="button" data-mdb-ripple-color="dark"><i class="fab fa-youtube"></i></a>
 
-      </section>
-      <!-- Section: Social media -->
-    </div>
+            </section>
+          </div>
 
         </ul>
       </div>
@@ -91,9 +90,9 @@
 
    <footer class="text-center text-white" style="background-color: #f1f1f1">
     <!-- Grid container -->
-    <div class="container pt-4">
+    <!-- <div class="container pt-4"> -->
       <!-- Section: Social media -->
-      <section class="mb-4">
+      <!-- <section class="mb-4"> -->
         <!-- Facebook -->
         <!-- <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button" data-mdb-ripple-color="dark"><i class="fab fa-facebook-f"></i></a> -->
 
@@ -112,9 +111,9 @@
         <!-- whats app -->
         <!-- <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="https://wa.me/+254740027027" target="_blank" role="button" data-mdb-ripple-color="dark"><i class="fab fa-whatsapp"></i></a> -->
 
-      </section>
+      <!-- </section> -->
       <!-- Section: Social media -->
-    </div>
+    <!-- </div> -->
     <!-- Grid container -->
 
     <!-- Copyright -->

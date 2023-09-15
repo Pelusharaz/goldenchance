@@ -24,6 +24,9 @@
               <a class="nav-link" aria-current="page" onclick="whoweare()"><p style="font-weight: bolder;">Contact us</p></a>
             </li>
             <li class="nav-item active" style="cursor:pointer;">
+              <a class="nav-link" aria-current="page" href="../diaspora.php"><p style="font-weight: bolder;">Diaspora</p></a>
+            </li>
+            <li class="nav-item active" style="cursor:pointer;">
               <a class="nav-link" aria-current="page" href="blogs.php"><p style="font-weight: bolder;">Blogs</p></a>
             </li>
             <li class="nav-item active" style="cursor:pointer;">

@@ -493,17 +493,17 @@ session_start();
 
         <!--- database property -->
         
-        <section class="text-center mb-4" style="margin-left:auto;margin-right:auto;display:block;overflow-x:hidden;" id="store" >
+        <section class="text-center mb-4" style="margin-top:-90px;margin-left:auto;margin-right:auto;display:block;overflow-x:hidden;" id="store" >
         <div class="row" >
         <div id="product-grid">
         <?php
             if (isset($_POST['submit'])) {
               $search = $_POST['search'];
-              $product_array = $db_handle->runQuery("SELECT * FROM products where (category LIKE '%" . $_POST["search"] . "%') OR (productname LIKE '%" . $_POST["search"] . "%') OR (productinfo LIKE '%" . $_POST["search"] . "%')OR (price LIKE '%" . $_POST["search"] . "%') OR (products LIKE '%" . $_POST["search"] . "%')");
+              $product_array = $db_handle->runQuery("SELECT * FROM products where (category LIKE '%" . $_POST["search"] . "%') OR (productname LIKE '%" . $_POST["search"] . "%') OR (productinfo LIKE '%" . $_POST["search"] . "%')OR (price LIKE '%" . $_POST["search"] . "%') OR (products LIKE '%" . $_POST["search"] . "%')GROUP BY code");
               if (!empty($product_array)) {
                 foreach ($product_array as $key => $value) {
             ?>
-                <a style="color:black;" title="see details of property" href="services/property.php?property=<?php echo $product_array[$key]["id"]; ?>">
+                <a style="color:black;" title="see details of property" href="services/property.php?property=<?php echo $product_array[$key]["code"]; ?>">
                   <div class="product-item card" style="width:270px;height:450px;">
                     <iframe name="votar" style="display:none;"></iframe>
                     <form method="post" target="votar" action="sharazstore.php?action=add&code=<?php echo $product_array[$key]["code"]; ?>" onsubmit="showMsg()" style="box-shadow:none;">
@@ -555,7 +555,7 @@ session_start();
                           </style>
                       <?php
                         require_once 'php/includes/config.php';
-                        $sql = "SELECT * FROM soldout WHERE propertyId = '" . $product_array[$key]["id"] . "'";
+                        $sql = "SELECT * FROM soldout WHERE propertyId = '" . $product_array[$key]["code"] . "'";
                         $stmt = $DBH->prepare($sql);
                         $stmt->execute();
                         if ($stmt->rowCount() == 1) {
@@ -577,11 +577,11 @@ session_start();
         }
       }
     }else{
-      $product_array = $db_handle->runQuery("SELECT * FROM products ORDER BY id ASC ");
+      $product_array = $db_handle->runQuery("SELECT * FROM products GROUP BY code ORDER BY id ASC ");
       if (!empty($product_array)) {
         foreach ($product_array as $key => $value) {
         ?>
-          <a style="color:black;" title="see details of property" href="services/property.php?property=<?php echo $product_array[$key]["id"]; ?>">
+          <a style="color:black;" title="see details of property" href="services/property.php?property=<?php echo $product_array[$key]["code"]; ?>">
           <div class="product-item card" style="width:270px;height:450px;box-shadow:none;">
             <iframe name="votar" style="display:none;"></iframe>
             <form method="post" target="votar" action="sharazstore.php?action=add&code=<?php echo $product_array[$key]["code"]; ?>" onsubmit="showMsg()" style="box-shadow:none;">
@@ -633,7 +633,7 @@ session_start();
                   </style>
           <?php
             require_once 'php/includes/config.php';
-            $sql="SELECT * FROM soldout WHERE propertyId = '".$product_array[$key]["id"]."'";
+            $sql="SELECT * FROM soldout WHERE propertyId = '".$product_array[$key]["code"]."'";
             $stmt = $DBH->prepare($sql);
             $stmt->execute();
             if($stmt->rowCount() == 1) {

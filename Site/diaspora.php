@@ -1,6 +1,6 @@
 <!-- Site Visits -->
 <?php
- require_once '../php/includes/config.php';
+ require_once 'php/includes/config.php';
  if (isset($_POST['sitevisits'])){
 
   $name = $_POST['name'];
@@ -21,10 +21,38 @@
     //throw $th;
     echo $e->getMessage();
   }
-  echo "<script>alert('Booking was successfully. We will get back to you shortly')</script>";
+  echo "<script>alert('Booking was successfully. We will get back to you shortly')</script>
+  <script>window.location = 'diaspora.php'</script>";
  }
  
  ?>
+
+<!-- Enquiry messages -->
+<?php
+require_once 'php/includes/config.php';
+if (isset($_POST['enquiries'])) {
+
+  $name = $_POST['name'];
+  $phone = $_POST['phone'];
+  $email = $_POST['email'];
+  $type = $_POST['type'];
+  $information = $_POST['information'];
+  $checkbox = $_POST['checkbox'];
+  try {
+    //code...
+    $sql = 'INSERT INTO enquiries(name,phone,email,type,information,checkbox,Date,Time ) VALUES(?,?,?,?,?,?,Now(),Now() )';
+    $sth = $DBH->prepare($sql);
+    $sth->execute(array($name, $phone, $email, $type, $information, $checkbox));
+    $_SESSION['success'] = "message sent successfully.";
+  } catch (PDOException $e) {
+    //throw $th;
+    echo $e->getMessage();
+  }
+  echo "<script>alert('Message sent successfully. We value Your Feedback')</script>
+  <script>window.location = 'diaspora.php'</script>";
+}
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -35,9 +63,9 @@
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Golden chance | News and Blogs</title>
+    <title>Golden chance | Home</title>
     <!-- Tees Icon -->
-    <link rel="icon" href="../img/Golden chance logo.png"/>
+    <link rel="icon" href="img/Golden chance logo.png"/>
     <!-- Badge Icons from Font Awesome -->
     <link
       rel="stylesheet"
@@ -51,9 +79,9 @@
     <!-- Styles -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link href="../css/cart.css" type="text/css" rel="stylesheet" />
-    <link rel="stylesheet" href="../css/styles.css" />
-    <link rel="stylesheet" href="../css/extrastyles.css" />
-    <link rel="stylesheet" href="../php/Admin/css/admin.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/extrastyles.css" />
+    <link rel="stylesheet" href="php/Admin/css/admin.css" />
 
     <!--date picker--->
     <!-- Importing jquery cdn -->
@@ -101,7 +129,7 @@
   <body>
     <header>
       <!-- Navbar -->
-      <?php require_once '../php/includes/header2.php'; ?>
+      <?php require_once 'php/includes/header.php'; ?>
       
       <style>
         #video-background{
@@ -117,7 +145,56 @@
 
         
       </style>
-      
+      <!-- Background images -->
+      <div class="slideshow-container">
+     
+      <div class="p-5 text-center bg-image shadow-1-strong"
+        style="background-image: url('img/Diaspora 1.jpg'); height: 500px;">
+        <div class="mask" style="background-color: rgba(0, 0, 0, 0.6)">
+          <div class="d-flex justify-content-center align-items-center h-100">
+            <div class="text-white">
+              <h1 class="mb-3">DIASPORA CENTER</h1>
+              <h5 class="mb-3">
+               Are you Looking for property ?Grab a "GOLDEN CHANCE" Today
+              </h4>
+              <a class="btn btn-outline-light btn-lg" data-bs-toggle="modal" data-bs-target="#bookings" role="button">Book a site visit !</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-5 text-center bg-image shadow-1-strong"
+        style="background-image: url('img/Diaspora 2.jpg'); height: 500px;">
+        <div class="mask" style="background-color: rgba(0, 0, 0, 0.6)">
+          <div class="d-flex justify-content-center align-items-center h-100">
+            <div class="text-white">
+              <h1 class="mb-3">DIASPORA CENTER</h1>
+              <h5 class="mb-3">
+                Begin your journey of success
+                Get instant property in a few clicks
+              </h4>
+              <a class="btn btn-outline-light btn-lg" data-bs-toggle="modal" data-bs-target="#bookings" role="button">Book a site visit !</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-5 text-center bg-image shadow-1-strong"
+        style="background-image: url('img/land 1.jpg'); height: 500px;">
+        <div class="mask" style="background-color: rgba(0, 0, 0, 0.6)">
+          <div class="d-flex justify-content-center align-items-center h-100">
+            <div class="text-white">
+              <h1 class="mb-3">DIASPORA CENTER</h1>
+              <h5 class="mb-3">
+              Cheap and affordable properties
+              </h4>
+              <a class="btn btn-outline-light btn-lg" data-bs-toggle="modal" data-bs-target="#bookings" role="button">Book a site visit !</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+
 <!-- Modal for enquiries -->
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -127,7 +204,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
     
-      <form action="../index.php" method="POST" enctype="multipart/form-data" style="box-shadow:none;">
+      <form action=" " method="POST" enctype="multipart/form-data" style="box-shadow:none;">
       <div class="modal-body">
       <fieldset>
         
@@ -147,7 +224,7 @@
           <div class="item">
             <select style="padding-top:8px; padding-bottom:8px;margin-top:20px;" name="type" required>
              <option value="" disabled selected>Select Type of Enquiry</option>
-             <option value="Compliment">Compliment</option>
+             <option value="Blogging">Compliment</option>
              <option value="Complaint" >Complaint</option>
              <option value="Interest" >Interest</option>
              <option value="Follow up" >Follow up</option>
@@ -303,18 +380,17 @@
           padding:10px;
         }
         /*viewcbtn*/
-        .viewbtn {
-         width: 100px;
-         padding: 0px;
-         border: none;
-         border-radius: 5px; 
-         background: rgb(11, 117, 238);
-         font-size: 16px;
-         cursor: pointer;
-         color: rgb(252, 252, 252);
+        .viewbtn{
+          height:15%;
+          text-align:center;
+          opacity: 1;
+          background: blue;
+          color:#fff;
+          border-radius:25px;
+          padding:10px;
         }
-        .viewbtn:hover {
-          background: orangered;
+        .viewbtn:hover{
+          background:red;
         }
         </style>
         
@@ -343,203 +419,173 @@
 
 
     </header>
-    
+
     <main class="mt-5">
 
     <div class="alertMsg" id="alertMsg">Thank you for showing interest in our properties</div>
-    <br>
 
-      <div class="grid-gallery" style="margin-top:-80px;overflow-x:hidden;">
-        <div class="row">
-          <div class="frame">
-          <div class="mainpic">
-          <?php
-              require_once '../php/includes/config.php';
-              $sql="SELECT * FROM products where code = '" .$_GET["property"] . "' LIMIT 1";
-              $stmt = $DBH->prepare($sql);
-              $stmt->execute();
-              while($row = $stmt->fetchObject()) {
-           ?>
-          
-          <div class="">
-            <div class=" ">
-              <?php if($row->ext == 'mp4'){ ?>
-                 <video style="width:100%; height:465px;margin-top:-65px;" controls>
-                   <source src="<?php echo "../php/Admin/products/". "{$row->productimage}";?>" style="max-width:250px;margin-left:auto;margin-right:auto;display:block;">
-                 </video>
-                <?php }else{?>
-                    <img src="<?php echo "../php/Admin/products/". "{$row->productimage}";?>" style="width:100%;height:400px;margin-left:auto;margin-right:auto;display:block;">
-              <?php }?>
-              <!-- <img src="../img/land 1.jpg" style="width:100%; height:50%;"> -->
-            </div>
-          </div>
+      <div class="container">
+        <p contenteditable="true">At Golden chance Real Estate Limited we value our diaspora investors and we are here to ensure that
+           they have a hustle free investment. We consider anyone outside the borders of Kenya in Africa, 
+           America, Asia,Australia and Europe to be a diaspora Investor whether you are out for studies, work 
+           or are a permanent residence in another country but are a Kenyan Citizen.
+        </p>
+     </div>
+    
 
-          <?php }?>
-          </div> 
-          <div class="flexbox">
-          <?php
-              require_once '../php/includes/config.php';
-              $sql="SELECT  * FROM products where code = '" .$_GET["property"] . "' ORDER BY id DESC LIMIT 4";
-              $stmt = $DBH->prepare($sql);
-              $stmt->execute();
-              while($row = $stmt->fetchObject()) {
-           ?>
-          
-            <div class="col-lg-3 column">
-            
-              <?php if($row->ext == 'mp4'){ ?>
-                 <video style="width:100%; height:210px;margin-top:-10px;" controls>
-                   <source src="<?php echo "../php/Admin/products/". "{$row->productimage}";?>" style="max-width:250px;margin-left:auto;margin-right:auto;display:block;">
-                 </video>
-                <?php }else{?>
-                    <img src="<?php echo "../php/Admin/products/". "{$row->productimage}";?>" style="width:100%;height:190px;margin-left:auto;margin-right:auto;display:block;">
-              <?php }?>
-              <!-- <img src="../img/land 1.jpg" style="width:100%; height:50%;"> -->
-            </div>
-          
-
-          <?php }?>
-          </div>
-          </div>
-
-        </div>
+     <div class="container diaspora-about" id="whoweare">
+       <div class="dias-img">
+        <img src="img/land 2.jpg" alt="img" style="width:100%;height:300px;">
+       </div>
+       <br>
+       <div class="dias-info">
+         <p contenteditable="true">Golden chance is a leading brand in the African real estate sector. 
+            It was established in the year 2014 and has since then successfully settled its clients on their 
+            dream property.
+        </p>
+        <p>
+         <ul class="benefits" contenteditable="true">
+          <li>We thrive in Honesty and professionalism</li>
+          <li>We give you value for your money.</li>
+          <li>We have ready titles for the projects</li>
+          <li>We offer solutions to your investment need</li>
+          <li>We pick you from the airport and take you to view your investment.</li>
+          <li>We empower you on property investment and give guidance on requirements to own your property.</li>
+          <li>Our projects have value additions and are fit for immediate settlement</li>
+          <li>We have customer service officers who are available 24/7 to answer to all your questions on investment
+              and gives advice on documentation needed in acquiring your property
+          </li>
+          <li>Our Diaspora department facilitates you in acquiring documents i.e PIN,ID by connecting you to the Kenyan Embassy.</li>
+          <li>We have a list of property that one can choose from depending on their investment needs.</li>
+          <li>We allow you to purchase a project and pay in monthly instalments.</li>
+         </ul>
+        </p>
+       </div>
+     </div>
+     <br>
+     <div class="container">
+      <div class="title">
+        <i class="fas fa-quote-left fa-lg" style="color: #e2128c;float:left;"></i>
+        <h5 style="font-style: italic;font-weight:500;" contenteditable="true">HOW CAN ONE ACQUIRE A PROPERTY WHILE ABROAD?</h5>
+      </div>
+      <div class="text">
+        <p contenteditable="true">
+         At Golden chance Real Estate Limited we ensure that our diaspora investors have a hustle free investment 
+         experience; by this we are in communication with them giving guidance every step of the way on acquiring their 
+         property of choice until finalization. We send you our Investment catalogue for you to choose your 
+         investment projectthat will suit your need as well as the project maps to choose the plot of interest.
+        </p>
       </div>
 
-      <!-- <div class="grid-gallery" style="margin-top:-80px;">
-        <div class="row"> 
-         <div class="column single">
-            <?php// if($row->ext == 'mp4'){ ?>
-                 <video style="width:100%; height:100%;margin-top:-50px;" controls>
-                   <source src="<?php// echo "../php/Admin/products/". "{$row->productimage}";?>" style="max-width:250px; height:200px;margin-left:auto;margin-right:auto;display:block;">
-                 </video>
-                <?php// }else{?>
-                    <img src="<?php //echo "../php/Admin/products/". "{$row->productimage}";?>" style="width:100%; height:101%;margin-left:auto;margin-right:auto;display:block;">
-            <?php //}?>
-          <img src="../img/land 1.jpg" style="width:100%; height:103%;">
-         </div> -->
+     </div>
+     <br>
+
+     <div class="container" id="accordionExample" style="background-color: #f1f1f1; padding:20px 50px 20px 50px;">
+      <div class="title">
+        <i class="fa fa-thumbs-up fa-lg" style="color: #0017c7;float:left;margin-right:5px;"></i>
+        <h4 style="font-weight:bold;" contenteditable="true">LEARN TO ACQUIRE LAND WITH US</h4>
+      </div>
+      <div class="text"style="padding:20px 50px 20px 50px;">
+        <div class="dropdown-toggle"style="font-size:20px;font-weight:bolder;">
+          <a data-toggle="collapse" data-target="#collapseFour"style="color:black;cursor:pointer;" contenteditable="true">
+            Purchase Process
+          </a>
+        </div>
+        <br>
+        <div id="collapseFour" class="collapse" data-parent="#accordionExample">
+          <ol contenteditable="true">
+            <li>
+                Inquiry of any Golden chance limited Property. Feedback: Type of investment (Long term or Short term) through 
+                the live chat, Facebook, twitter, Skype, Whatsapp and the website Conversion: Further interaction to 
+                enable the client select a desired project to fit the need.
+            </li>
+            <li> 
+              Investment Catalog – Send an investors’ guide that will fit the client investment category.
+            </li>
+            <li> 
+              Investment Catalog – Send an investors’ guide that will fit the client investment category.
+            </li>
+            <li>
+              Plot Selection: Client selects the preferred project. Subdivision Map: Send the subdivision map directly or 
+              check the updated map online from the project he has selected. Site Visit: Send a representative to view
+              on behalf, the client should provide contact to enable communication. We shall also take the client to 
+              view when he comes back to the country. (We conduct site visits free of charge).
+            </li>
+          </ol>
+        </div>
+      </div>
+      
+     </div> 
+     <br><br><br>
+    
+     <!-- <?php 
+      $message= $_POST['test'];
+      ?>
+     <form action="" method="post" id="translate">
+        <label for="information"> Purchase Process<span>*</span></label>
+        <textarea name="test" type="text"><?php// echo $message; ?></textarea>
         
-         <!-- <div class="column">
-            <?php// if($row->ext == 'mp4'){ ?>
-                 <video style="width:100%; height:100%;margin-top:-50px;" controls>
-                   <source src="<?php// echo "../php/Admin/products/". "{$row->productimage}";?>" style="max-width:250px; height:200px;margin-left:auto;margin-right:auto;display:block;">
-                 </video>
-                <?php// }else{?>
-                    <img src="<?php //echo "../php/Admin/products/". "{$row->productimage}";?>" style="width:100%; height:100%;margin-left:auto;margin-right:auto;display:block;">
-            <?php// }?>
-            <img src="../img/land 1.jpg" style="width:100%; height:50%;">
-         </div>
-
-        </div>
+        <button type="submit" form="translate" value="submit">Translate</button>
+        <button type="reset" value="reset">Reset</button>
+     </form>
+      
+     <?php
+       $message= $_POST['test'];
+            
+      ?>
+      <div>
+        <ol>
+            <li><?php// echo $message; ?></li>
+        </ol>
+       
       </div> -->
-    <?php// }?>
-
-        <?php
-            require_once '../php/includes/config.php';
-            $sql="SELECT * FROM products where code = '" .$_GET["property"] . "' LIMIT 1 ";
-            $stmt = $DBH->prepare($sql);
-            $stmt->execute();
-            while($row = $stmt->fetchObject()) {
+      
+     <div class="container">
+        <h5 style="color:black; font-weight:bold;">CHECK OUT PROPERTIES</h5>
+        <div class="row more-properties">
             
-        ?>
-        <div class="container news-blogs" style="padding-top:20px;margin-top:20px;">
-          <div class="header" style="display:flex;">
-            <div class="available"style="margin-left:10px;">
             <?php
-                require_once '../php/includes/config.php';
-                $sql = "SELECT * FROM soldout WHERE propertyId = '$row->code' ";
-                $stmt = $DBH->prepare($sql);
-                $stmt->execute();
-                if ($stmt->rowCount() == 1) {
-                    while ($row1 = $stmt->fetchObject()) {
-                ?>
-                <button class="btn viewbtn" style="cursor: no-drop; background-color:red;text-transform:lowercase;">Sold out</button>
-                <?php }
-                    } else { ?>
-                <button class="viewbtn" onclick="showMsg()">Available</button>
-            <?php } ?>
-            </div>
-            <h4 style="color:black; font-weight:bolder;margin-right:10px;"></h4><h5 style="color:black; font-weight:bold;">Kes <?php echo number_format($row->price)?>/=</h5>
-          </div>
-          <h4 style="color:blue; font-weight:bolder;margin-left:10px;"><?php echo $row->productname ?></h4>
-          <a href="tel:0740027027"><i class="fa-map-marker fa"></i> <?php echo $row->location ?></a><br><br><br>
-
-          <div class="row row-blog">
+              require_once 'php/includes/config.php';
+              $sql="SELECT * FROM products GROUP BY code order by RAND() LIMIT 3";
+              $stmt = $DBH->prepare($sql);
+              $stmt->execute();
+              while($row = $stmt->fetchObject()) {
             
-            <div class="blog">
-
-              <div class="blog-img" style="margin:10px;">
-              <?php if($row->ext == 'mp4'){ ?>
-                 <video style="width:250px; height:250px;margin-top:-50px;" controls>
-                   <source src="<?php echo "../php/Admin/products/". "{$row->productimage}";?>" style="max-width:250px; height:200px;margin-left:auto;margin-right:auto;display:block;">
-                 </video>
-                <?php }else{?>
-                    <img src="<?php echo "../php/Admin/products/". "{$row->productimage}";?>" style="width:250px; height:250px;margin-left:auto;margin-right:auto;display:block;">
-              <?php }?>
-              </div>
-              
-              <div class="information">
-                  <h6 style="font-weight: bolder;">Amenities </h6>
-                  <p><?php echo $row->productinfo ?></p>
-                  <span style="display:flex;"><h6 style="font-weight:bolder;margin-right:5px;">Size : </h6><p> <?php echo $row->size ?></p></span>
-                  <span style="display:flex;"><h6 style="font-weight:bolder;margin-right:5px;">Category :</h6> <p><?php echo $row->category ?></p></span>
-                  <button type="submit" name="submit" data-bs-toggle="modal" data-bs-target="#bookings" role="button"> <a style="color:white;">Book Site Visit</a> </button>
-              </div>
-
-
-              <?php }?>
-
-              <div class="more-properties">
-                  <h5 style="color:black; font-weight:bold;">MORE PROPERTIES</h5>
-                  <?php
-                    require_once '../php/includes/config.php';
-                    $sql="SELECT * FROM products GROUP BY code order by RAND() LIMIT 2";
-                    $stmt = $DBH->prepare($sql);
-                    $stmt->execute();
-                    while($row = $stmt->fetchObject()) {
-            
-                  ?>
-                    <div class="properties"style="display:flex;">
-                      <div class="property-img" style="margin:10px;">
-                       <?php if($row->ext == 'mp4'){ ?>
-                        <video style="width:150px; height:200px;margin-top:-50px;" controls>
-                         <source src="<?php echo "../php/Admin/products/". "{$row->productimage}";?>" style="max-width:250px; height:200px;margin-left:auto;margin-right:auto;display:block;">
-                        </video>
-                       <?php }else{?>
-                        <img src="<?php echo "../php/Admin/products/". "{$row->productimage}";?>" style="width:150px; height:150px;margin-left:auto;margin-right:auto;display:block;">
-                       <?php }?>
-                      </div>
-                      <div class="property-info">
-                        <h6 style="font-weight: bolder;"><?php echo $row->productname ?> </h6>
-                        <p><i class="fa-map-marker fa"></i> <?php echo $row->location ?></p>
-                        <a href="property.php?property=<?php echo $row->code ?>">see details</a>
-                        
-                      </div>
-                    </div>
+            ?>
+             <div class="col-lg-4 properties"style="display:flex;">
+                <div class="property-img" style="margin:10px;display:block;">
+                  <?php if($row->ext == 'mp4'){ ?>
+                  <video style="width:150px; height:200px;margin-top:-50px;" controls>
+                    <source src="<?php echo "php/Admin/products/". "{$row->productimage}";?>" style="max-width:250px; height:200px;margin-left:auto;margin-right:auto;display:block;">
+                  </video>
+                  <?php }else{?>
+                    <img src="<?php echo "php/Admin/products/". "{$row->productimage}";?>" style="width:150px; height:150px;margin-left:auto;margin-right:auto;display:block;">
                   <?php }?>
+                </div>
+                <div class="property-info">
+                  <h6 style="font-weight: bolder;"><?php echo $row->productname ?> </h6>
+                  <h6 style="color:blue; font-weight:bold;">Kes <?php echo number_format($row->price)?>/=</h6>
+                  <p><i class="fa-map-marker fa"></i> <?php echo $row->location ?></p>
+                  <a href="services/property.php?property=<?php echo $row->code ?>">see details</a>
+                        
+                </div>
               </div>
+            <?php }?>
+         </div>
+     </div>
 
-            </div>
-
-          </div>
-
-        </div>
+      
     <!-- success message -->
     <script>
       function showMsg()
       {
       $("#alertMsg").fadeIn('slow', function () {
       $(this).delay(1000).fadeOut('slow');
-      window.location = '../properties.php'
+      window.location = 'properties.php'
       });
     }
     </script>
-    <script>
-    $(window).on('load', function() {
-      $("#alertMsg").fadeIn('slow');
-      $("#alertMsg").delay(1000).fadeOut('slow');
-    });
-   </script>
-  
+
    <style>
     .alertMsg
     {
@@ -587,91 +633,25 @@
     .dt-properties-form{
        margin-left:-50px;
       }
-
-    .blog {
-      display: flex;
-      }
-    .blog-img{
-      width:20%;
-    }
-    .information{
-      margin-left:40px;
-      width:40%;
-    }
-    .more-properties{
-      width:30%;
-      margin-left:10px;
-      margin-top:-130px;
-      display:block;
-    }
-    .frame{
+    .diaspora-about{
       display:flex;
     }
-
-    /* grid-gallery */
-    .flexbox {
-      display: -ms-flexbox; /* IE10 */
-      display: flex;
-      -ms-flex-wrap: wrap; /* IE10 */
-      flex-wrap: wrap;
-      padding: 0 4px;
-      width:60%;
-    }
-    .mainpic{
+    .dias-img {
       width:40%;
+      margin-right:10px;
     }
-
-    /* Create two equal columns that sits next to each other */
-     .column {
-      -ms-flex: 50%; /* IE10 */
-       flex: 50%;
-       max-width: 50%;
-       padding: 0 4px;
+    .dias-info{
+      width:60%
     }
-
-     .column img {
-      margin-top: 8px;
-      vertical-align: middle;
-      width: 100%;
-     }
-    @media only screen and (max-width: 900px) {
-      .information{
-      margin-left:120px;
-      width:40%;
+    .benefits li{
+      list-style:none;
+      color:blue;
     }
+    .benefits li:before{
+      content:"\2714\0020";
     }
+    
     @media only screen and (max-width: 700px) {
-    .single{
-      margin-bottom: 20px;
-      margin-top: 20px;
-    }
-    .frame{
-      display: block;
-    }
-    .mainpic{
-      width:100%;
-    }
-    .flexbox{
-      width:100%;
-      height:auto;
-    }
-    .blog {
-      display: block;
-     }
-    .information{
-      padding: 20px;
-      margin-left:0px;
-      width:100%;
-    }
-    .blog-image{
-      width:100%;
-    }
-    .more-properties{
-      width:100%;
-      margin-left:10px;
-      margin-top:0px;
-      display:block;
-    }
     .dt-properties-form{
        margin-left:0px;
       }
@@ -695,24 +675,36 @@
     .large-screen-logo{
       display:none;
     }
+    .diaspora-about{
+      display:block;
+    }
+    .dias-img {
+      width:100%;
+      margin-right:10px;
+    }
+    .dias-info{
+      width:100%
+    }
     }
    </style>
                   
   <!-- end --->
+  </main>
 
-    </main>
     <!--Footer-->
-    <div class="footer">
-     <?php require_once '../php/includes/footer.php'; ?>
-    </div>
+  <div class="footer">
+    <?php require_once 'php/includes/footer.php'; ?>
+  </div>
 
-    
   </body>
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-  <script type="text/javascript" src="../js/script1.js"></script>
+  <script type="text/javascript" src="js/script1.js"></script>
   <script type="text/javascript"></script>
 
   <!-- success message -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </html>
+
+
+<!-- test -->

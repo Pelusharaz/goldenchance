@@ -5,7 +5,7 @@
     $id = $_POST['soldid'];
     try {
         //code...
-        $sql1 = "SELECT * FROM soldout WHERE propertyId =  '$id'";
+        $sql1 = "SELECT * FROM soldout WHERE propertyId = '$id' ";
         $sth1 = $DBH->prepare($sql1);
         $sth1->execute(array());
 
@@ -13,9 +13,9 @@
           echo "<script>alert('Error! Property already Marked as sold out')</script>
           <script>window.location = 'admin.php'</script>"; 
         }else{
-          $sql = "INSERT INTO soldout(propertyId) VALUES($id)";
+          $sql = "INSERT INTO soldout(propertyId) VALUES(?)";
           $sth = $DBH->prepare($sql);
-          $sth->execute(array());
+          $sth->execute(array($id));
         }
 
         $_SESSION['success'] = "message sent successfully.";
@@ -109,7 +109,7 @@
 
     try {
         //code...
-        $sql = "DELETE FROM products WHERE id='$id'";
+        $sql = "DELETE FROM products WHERE code='$id'";
         $sth = $DBH->prepare($sql);
         $sth->execute(array());
         $_SESSION['success'] = "message sent successfully.";
@@ -122,27 +122,47 @@
     }
     
  ?>
+
+<!-- delete property images -->
+<?php
+ require_once '../includes/config.php';
+ if (isset($_POST['deleteimg_btn'])){
+
+    $id = $_POST['deleteimg_id'];
+    echo $id;
+  
+
+    try {
+        //code...
+        $sql = "DELETE FROM products WHERE id='$id'";
+        $sth = $DBH->prepare($sql);
+        $sth->execute(array());
+        $_SESSION['success'] = "message sent successfully.";
+      } catch (PDOException $e) {
+        //throw $th;
+        echo $e->getMessage();
+      }
+       
+    }
+    
+ ?>
+
 <!-- Update properties -->
 <?php
  require_once '../includes/config.php';
  if (isset($_POST['updateproduct'])){
 
-  $id = $_POST['id'];
+  $code = $_POST['code'];
   $productname = $_POST['productname'];
   $price = $_POST['price'];
   $productinfo = $_POST['productinfo'];
   $category = $_POST['category'];
-  $productimage = $_FILES['productimage']['name'];
-  $ext = pathinfo($productimage, PATHINFO_EXTENSION);
-
-  // image file directory
-  $target = "products/".basename($productimage);
+  $location= $_POST['location'];
+  $size= $_POST['size'];
   
-  
-
     try {
         //code...
-        $sql = "UPDATE products SET productname='$productname',price='$price',productinfo='$productinfo',category='$category',productimage='$productimage',ext='$ext'  where id= '". $_POST["id"] ."' ";
+        $sql = "UPDATE products SET productname='$productname',price='$price',productinfo='$productinfo',category='$category',location='$location',size='$size' where code= '". $_POST["code"] ."' ";
         $sth = $DBH->prepare($sql);
         $sth->execute(array());
         $_SESSION['success'] = "message sent successfully.";
@@ -153,14 +173,14 @@
       
       echo "<script>alert('Property edited Successfully')</script>
 		  <script>window.location = 'admin.php'</script>";
-
-    //uploading image
-    if (move_uploaded_file($_FILES['productimage']['tmp_name'], $target)){
-      header("location:admin.php");
-      $msg = "profile uploaded successfully";
-  	}else{
-  		$msg = "Failed to upload image";
-  	}
+     
+    // uploading image
+    // if (move_uploaded_file($_FILES['productimage']['tmp_name'], $target)){
+    //   header("location:admin.php");
+    //   $msg = "profile uploaded successfully";
+  	// }else{
+  	// 	$msg = "Failed to upload image";
+  	// }
 
     }  
  ?>
@@ -381,7 +401,7 @@
     
  ?>
 
- <!-- Update products -->
+ <!-- Update roles -->
 <?php
  require_once '../includes/config.php';
  if (isset($_POST['assign_role'])){

@@ -399,7 +399,7 @@ if (isset($_POST['enquiries'])) {
   </header>
 
   <main class="mt-5">
-    <div class="golden chance properties" style="margin-left:auto;margin-right:auto;display:block;text-align:center;">
+    <div class="golden-chance-properties" style="margin-left:auto;margin-right:auto;display:block;text-align:center;">
       <h4 style="color:blue; font-weight:bolder;">Featured Property</h4>
     </div>
     <div class="alertMsg" id="alertMsg">Thank you for showing interest in our properties</div>
@@ -448,7 +448,7 @@ if (isset($_POST['enquiries'])) {
         </div>
       </nav>
       
-    <div class="properties" style="overflow-x:hidden;">
+    <div class="properties">
       <!--- database property -->
       <section class="text-center mb-4" style="margin-left:auto;margin-right:auto;display:block;" id="store">
         <div class="row">
@@ -456,10 +456,11 @@ if (isset($_POST['enquiries'])) {
             <?php
             if (isset($_POST['submit'])) {
               $search = $_POST['search'];
-              $product_array = $db_handle->runQuery("SELECT * FROM products where (category LIKE '%" . $_POST["search"] . "%') OR (productname LIKE '%" . $_POST["search"] . "%') OR (productinfo LIKE '%" . $_POST["search"] . "%')OR (price LIKE '%" . $_POST["search"] . "%') OR (products LIKE '%" . $_POST["search"] . "%')");
+              $product_array = $db_handle->runQuery("SELECT * FROM products where (category LIKE '%" . $_POST["search"] . "%') OR (productname LIKE '%" . $_POST["search"] . "%') OR (productinfo LIKE '%" . $_POST["search"] . "%')OR (price LIKE '%" . $_POST["search"] . "%') OR (products LIKE '%" . $_POST["search"] . "%') GROUP BY code");
               if (!empty($product_array)) {
                 foreach ($product_array as $key => $value) {
             ?>
+                <a style="color:black;" title="see details of property" href="services/property.php?property=<?php echo $product_array[$key]["code"]; ?>">
                   <div class="product-item card" style="width:270px;height:450px;">
                     <iframe name="votar" style="display:none;"></iframe>
                     <form method="post" target="votar" action="sharazstore.php?action=add&code=<?php echo $product_array[$key]["code"]; ?>" onsubmit="showMsg()" style="box-shadow:none;">
@@ -513,23 +514,24 @@ if (isset($_POST['enquiries'])) {
 
                         <?php
                         require_once 'php/includes/config.php';
-                        $sql = "SELECT * FROM soldout WHERE propertyId = '" . $product_array[$key]["id"] . "'";
+                        $sql = "SELECT * FROM soldout WHERE propertyId = '" . $product_array[$key]["code"] . "'";
                         $stmt = $DBH->prepare($sql);
                         $stmt->execute();
                         if ($stmt->rowCount() == 1) {
                           while ($row = $stmt->fetchObject()) {
                         ?>
                             <!-- <a class="btn btn-danger" style="cursor: no-drop;">Property Sold Out</a> -->
-                            <a class="btn btn-danger" href="services/property.php?property=<?php echo $product_array[$key]["id"]; ?>">Property Sold Out</a>
+                            <a class="btn btn-danger" href="services/property.php?property=<?php echo $product_array[$key]["code"]; ?>">Property Sold Out</a>
                           <?php }
                         } else { ?>
                           <!-- <button class="viewbtn" onclick="showMsg()">View Property</button> -->
-                          <a class="btn viewbtn" href="services/property.php?property=<?php echo $product_array[$key]["id"]; ?>">View Property</a>
+                          <a class="btn viewbtn" href="services/property.php?property=<?php echo $product_array[$key]["code"]; ?>">View Property</a>
                         <?php } ?>
 
                       </div>
                     </form>
                   </div>
+                 </a>
 
                   <!-- success message -->
                 <script>
@@ -544,10 +546,11 @@ if (isset($_POST['enquiries'])) {
                 }
               }
             } else {
-              $product_array = $db_handle->runQuery("SELECT * FROM products WHERE category = 'featured' ORDER BY id ASC ");
+              $product_array = $db_handle->runQuery("SELECT * FROM products WHERE category = 'featured' GROUP BY code ORDER BY id ASC ");
               if (!empty($product_array)) {
                 foreach ($product_array as $key => $value) {
                 ?>
+                  <a style="color:black;" title="see details of property" href="services/property.php?property=<?php echo $product_array[$key]["code"]; ?>">
                   <div class="product-item card" style="width:270px;height:450px;box-shadow:none;">
                     <iframe name="votar" style="display:none;"></iframe>
                     <form method="post" target="votar" action="sharazstore.php?action=add&code=<?php echo $product_array[$key]["code"]; ?>" onsubmit="showMsg()" style="box-shadow:none;">
@@ -601,24 +604,25 @@ if (isset($_POST['enquiries'])) {
 
                         <?php
                         require_once 'php/includes/config.php';
-                        $sql = "SELECT * FROM soldout WHERE propertyId = '" . $product_array[$key]["id"] . "'";
+                        $sql = "SELECT * FROM soldout WHERE propertyId = '" . $product_array[$key]["code"] . "'";
                         $stmt = $DBH->prepare($sql);
                         $stmt->execute();
                         if ($stmt->rowCount() == 1) {
                           while ($row = $stmt->fetchObject()) {
                         ?>
                             <!-- <a class="btn btn-danger" style="cursor: no-drop;">Property Sold Out</a> -->
-                            <a class="btn btn-danger" href="services/property.php?property=<?php echo $product_array[$key]["id"]; ?>">Property Sold Out</a>
+                            <a class="btn btn-danger" href="services/property.php?property=<?php echo $product_array[$key]["code"]; ?>">Property Sold Out</a>
                           <?php }
                         } else { ?>
                            <!-- <button class="viewbtn" onclick="showMsg()">View Property</button> -->
-                           <a class="btn viewbtn" href="services/property.php?property=<?php echo $product_array[$key]["id"]; ?>">View Property</a> 
+                           <a class="btn viewbtn" href="services/property.php?property=<?php echo $product_array[$key]["code"]; ?>">View Property</a> 
                         <?php } ?>
 
 
                       </div>
                     </form>
                   </div>
+                  </a>
 
                  <!-- success message -->
                 <script>
@@ -731,6 +735,10 @@ if (isset($_POST['enquiries'])) {
               width:456px;
               margin-left:-110px;
             }
+            .properties{
+              overflow-x:hidden;
+              margin-top:-90px;
+            }
 
             @media only screen and (max-width: 700px) {
               .progress {
@@ -800,6 +808,12 @@ if (isset($_POST['enquiries'])) {
               .offer-image{
                 width:100%;
                 margin-left:0px;
+            }
+            .properties{
+              overflow:scroll;
+              height:700px;
+              overflow-x:hidden;
+              margin-top:-15px;
             }
             }
           </style>
@@ -873,7 +887,7 @@ if (isset($_POST['enquiries'])) {
 
       <div class="testimonies">
         <div class="testimonial" style="text-align:center; box-shadow: pink;">
-          <p>Selling and buyingis incredibly stressful! Thankfully,we had a great team at the Golden
+          <p>Selling and buying is incredibly stressful! Thankfully,we had a great team at the Golden
             Chance Real Estate Team to walk us through the process and make our experince as stress-free
             as possible.
           </p>
