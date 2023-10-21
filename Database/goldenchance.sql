@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 31, 2023 at 08:13 PM
+-- Generation Time: Sep 30, 2023 at 05:01 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -57,7 +57,7 @@ INSERT INTO `admin` (`id`, `username`, `email`, `question`, `answer`, `role`, `p
 --
 
 CREATE TABLE `blogs` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` int(11) NOT NULL,
   `blogtitle` varchar(255) DEFAULT NULL,
   `blogimage` varchar(255) NOT NULL,
   `ext` varchar(255) NOT NULL,
@@ -73,7 +73,8 @@ CREATE TABLE `blogs` (
 
 INSERT INTO `blogs` (`id`, `blogtitle`, `blogimage`, `ext`, `price`, `bloginfo`, `postedby`, `dateposted`) VALUES
 (12, 'Christmas Wishes', 'WhatsApp Video 2022-12-21 at 1.47.08 PM.mp4', 'mp4', 2022, 'Happy holidays, to all our esteemed clients. Thank you for trusting us with your property dealings. We hope to serve you again in the coming year.', 'Advert Manager', '2022-12-21'),
-(13, 'Our Projects', 'our projects.jpg', 'jpg', 230000, 'Our current ongoing project in Ruiru, Matuu, Mombasa, Gilgil all up for grabs.', 'Advert Manager', '2023-01-04');
+(13, 'Our Projects', 'our projects.jpg', 'jpg', 230000, 'Our current ongoing project in Ruiru, Matuu, Mombasa, Gilgil all up for grabs.', 'Advert Manager', '2023-01-04'),
+(14, 'Length Test', 'blogs.gif', 'gif', 200000, 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quod unde, delectus optio pariatur veniam veritatis, architecto dolores odio tempora consectetur temporibus doloremque esse inventore. Tenetur rerum ipsa quae possimus pariatur!\r\n\r\nLorem ipsum, dolor sit amet consectetur adipisicing elit. Quod unde, delectus optio pariatur veniam veritatis, architecto dolores odio tempora consectetur temporibus doloremque esse inventore. Tenetur rerum ipsa quae possimus pariatur!\r\n\r\nLorem ipsum, dolor sit amet consectetur adipisicing elit. Quod unde, delectus optio pariatur veniam veritatis, architecto dolores odio tempora consectetur temporibus doloremque esse inventore. Tenetur rerum ipsa quae possimus pariatur!\r\nLorem ipsum, dolor sit amet consectetur adipisicing elit. Quod unde, delectus optio pariatur veniam veritatis, architecto dolores odio tempora consectetur temporibus doloremque esse inventore. Tenetur rerum ipsa quae possimus pariatur!', 'Maintainance', '2023-09-15');
 
 -- --------------------------------------------------------
 
@@ -177,7 +178,8 @@ INSERT INTO `enquiries` (`id`, `name`, `phone`, `email`, `information`, `type`, 
 (28, 'Mike Stanley\r\n', '89358812829', 'no-replykt@gmail.com', 'Howdy \r\n \r\nThis is Mike Stanley\r\n \r\nLet me show you our latest research results from our constant SEO feedbacks that we have from our plans: \r\n \r\nhttps://www.strictlydigital.net/product/semrush-backli', 'Interest', 'on', '2023-05-04', '19:04:39.0'),
 (29, 'Mike Higgins\r\n', '81156649691', 'no-replykt@gmail.com', 'If you have a local business and want to rank it on google maps in a specific area then this service is for you. \r\n \r\nGoogle Map Stacking is one of the best ways to rank your GMB in a specific mile ra', 'Follow up', 'on', '2023-05-11', '09:23:50.0'),
 (30, 'StevenBag', '84622285368', 'hello@odoziakuchi.co', 'Good day! \r\n \r\nLooking for Heirloom fine Jewellery? \r\n \r\nODOZIAKUCHI is an exciting British jewellery brand that celebrates individuality, our mission is to create sentimental jewellery with meaning t', 'Complaint', 'on', '2023-05-11', '10:30:54.0'),
-(31, 'Mike Tracey\r\n', '89393645191', 'no-replykt@gmail.com', 'Hello \r\n \r\nI have just checked  goldenchanceproperties.com for its SEO Trend and saw that your website could use an upgrade. \r\n \r\nWe will improve your ranks organically and safely, using state of the ', 'Follow up', 'on', '2023-05-17', '16:45:28.0');
+(31, 'Mike Tracey\r\n', '89393645191', 'no-replykt@gmail.com', 'Hello \r\n \r\nI have just checked  goldenchanceproperties.com for its SEO Trend and saw that your website could use an upgrade. \r\n \r\nWe will improve your ranks organically and safely, using state of the ', 'Follow up', 'on', '2023-05-17', '16:45:28.0'),
+(32, 'Pelu Jeremiah', '0791386752', 'pelunguta@gmail.com', 'test', 'Interest', 'on', '2023-09-13', '16:14:50.0');
 
 -- --------------------------------------------------------
 
@@ -186,7 +188,7 @@ INSERT INTO `enquiries` (`id`, `name`, `phone`, `email`, `information`, `type`, 
 --
 
 CREATE TABLE `offers` (
-  `id` int(255) NOT NULL,
+  `id` int(11) NOT NULL,
   `productname` varchar(255) NOT NULL,
   `productimage` varchar(255) NOT NULL,
   `ext` varchar(255) NOT NULL,
@@ -230,11 +232,10 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `productname`, `price`, `productinfo`, `productimage`, `ext`, `category`, `products`, `code`, `location`, `size`, `Date`, `Time`) VALUES
-(27, 'Land in Matuu', 180000, '50*100 Plots.  Water and electricity. Ready title deed', 'WhatsApp Image 2023-01-18 at 4.08.29 PM.jpeg', 'jpeg', 'bestselling', 'products', '1', '', '', '2022-12-21', '07:15:55.0'),
-(30, 'Kitengela Projects', 1200000, '50*100 residential plots, touching the tarmac with good security, water and electricity', 'WhatsApp Image 2022-09-19 at 1.20.12 PM (2).jpg', 'jpg', 'hotdeals', 'products', '1', '', '', '2022-12-21', '07:17:48.0'),
-(31, 'Plots In Gilgil', 350000, '50 by 100 Plots, near Lake Elementatiata Pebble Resort, with water and electricity and ready title d', 'WhatsApp Image 2023-05-23 at 9.02.31 AM (1).jpeg', 'jpeg', 'hotdeals', 'products', '1', '', '', '2022-12-21', '07:18:46.0'),
-(32, 'Plots in Ruiru', 1200000, '50 by 85 residential plots in a gated community, with water and electricity. Ready title deeds', 'IMG-20210503-WA0004.jpg', 'jpg', 'featured', 'products', 'R', '', '', '2023-01-04', '09:45:55.0'),
-(33, 'Mwalimu farm', 2500000, '1,2 and 3 acres starting @ 2.5M - 3Mper  acre', 'IMG_20230104_124958.jpg', 'jpg', 'hotdeals', 'products', 'M', '', '', '2023-01-04', '09:49:37.0'),
+(27, 'Land in Matuu', 180000, '50*100 Plots.  Water and electricity. Ready title deed', 'WhatsApp Image 2023-01-18 at 4.08.29 PM.jpeg', 'jpeg', 'bestselling', 'products', 'Matuu', '', '', '2022-12-21', '07:15:55.0'),
+(30, 'Kitengela Projects', 1200000, '50*100 residential plots, touching the tarmac with good security, water and electricity', 'WhatsApp Image 2022-09-19 at 1.20.12 PM (2).jpg', 'jpg', 'hotdeals', 'products', 'kitengela', '', '', '2022-12-21', '07:17:48.0'),
+(31, 'Plots In Gilgil', 350000, '50 by 100 Plots, near Lake Elementatiata Pebble Resort, with water and electricity and ready title d', 'WhatsApp Image 2023-05-23 at 9.02.31 AM (1).jpeg', 'jpeg', 'hotdeals', 'products', 'Gilgil', '', '', '2022-12-21', '07:18:46.0'),
+(33, 'Mwalimu farm', 2500000, '1,2 and 3 acres starting @ 2.5M - 3Mper  acre', 'IMG_20230104_124958.jpg', 'jpg', 'hotdeals', 'products', 'M', '', '1,2 and 3 acres', '2023-01-04', '09:49:37.0'),
 (35, 'Nyandarua Project ', 1000000, '1 acre in Nyandarua ', 'IMG_20201206_133455-870x420.jpg', 'jpg', 'hotdeals', 'products', 'N', '', '', '2023-01-04', '09:58:25.0'),
 (36, 'Tulia Gardens Matuu', 230000, '50*100 Plots. 300 Meters from tarmac. Water and electricity. Ready title deed', 'WhatsApp Image 2023-04-24 at 2.23.01 PM.jpeg', 'jpeg', 'bestselling', 'products', 'Mt', '', '', '2023-01-04', '10:00:55.0'),
 (38, 'Foothill Gardens Kilimambogo', 375000, '50 x 100 plots. Fully serviced( water, electricity and roads). Spectacular 14 falls. Unique getaway ', 'WhatsApp Video 2023-01-31 at 5.43.01 PM.mp4', 'mp4', 'featured', 'products', 'k', '', '', '2023-03-04', '07:45:51.0'),
@@ -242,11 +243,21 @@ INSERT INTO `products` (`id`, `productname`, `price`, `productinfo`, `productima
 (40, 'Plots in Isinya- Kiserian', 395000, '2KM from isinya town along Kiserian tarmac. Well developed neighborhood, water, electricity, murram ', 'WhatsApp Image 2023-03-29 at 4.56.18 PM.jpeg', 'jpeg', 'hotdeals', 'products', 'i', '', '', '2023-03-29', '15:09:34.0'),
 (41, 'Nanyuki Project', 700000, '12 acres Nanyuki Ngobit.  300 meters from tarmac. Rich black cotton soil. Overlooking the beautiful ', 'WhatsApp Image 2023-03-29 at 5.03.51 PM.jpeg', 'jpeg', 'hotdeals', 'products', 'ny', '', '', '2023-03-29', '15:20:32.0'),
 (42, 'Fahari Gardens Naivasha', 750000, '50 x 100 plots, located 4km from Naivasha along Mai Mahiu road. 13 minutes from Mai Mahiu town .Just', 'WhatsApp Image 2023-04-28 at 2.02.19 PM.jpeg', 'jpeg', 'hotdeals', 'products', 'nv', '', '', '2023-05-04', '06:08:14.0'),
-(43, 'Ridge View Gardens- Juja farm', 899000, '50 x 100 plots, near Mwireri shopping centre, good neighborhood, social amenities: schools, churches', 'WhatsApp Image 2023-05-23 at 9.02.31 AM.jpeg', 'jpeg', 'hotdeals', 'products', 'jf', '', '', '2023-05-23', '05:57:36.0'),
-(48, 'Final Test', 300000, 'test info', 'IMG-20220919-WA0003.jpg', 'jpg', 'featured', 'products', 'TR', 'Ruiru', '100*100', '2023-08-31', '20:11:21.0'),
-(49, 'Test3', 300000, 'test info2', 'IMG_20230104_124958.jpg', 'jpg', 'featured', 'products', 'TR', 'Ruiru', '100*100', '2023-08-31', '20:19:54.0'),
-(50, 'Final Test', 400000, 'test info2', 'IMG_20201206_133455-870x420.jpg', 'jpg', 'featured', 'products', 'TR', 'Nakuru', '100*100', '2023-08-31', '20:50:24.0'),
-(51, 'Test4', 300000, 'test info3', 'IMG_20230104_121438.jpg', 'jpg', 'bestselling', 'products', 'TR', 'Nakuru', '50*20', '2023-08-31', '20:52:37.0');
+(43, 'Ridge View Gardens- Juja farm', 899000, '50 x 100 plots, near Mwireri shopping centre, good neighborhood, social amenities: schools, churches', 'WhatsApp Image 2023-05-23 at 9.02.31 AM.jpeg', 'jpeg', 'hotdeals', 'products', 'jf', 'Juja', '50*100', '2023-05-23', '05:57:36.0'),
+(161, 'Mwalimu farm', 2500000, '1,2 and 3 acres starting @ 2.5M - 3Mper  acre', 'IMG_20201206_133455-870x420.jpg', 'jpg', 'hotdeals', 'products', 'M', '', '1,2 and 3 acres', '2023-09-11', '21:05:33.0'),
+(162, 'Mwalimu farm', 2500000, '1,2 and 3 acres starting @ 2.5M - 3Mper  acre', 'IMG_20230104_121438.jpg', 'jpg', 'hotdeals', 'products', 'M', '', '1,2 and 3 acres', '2023-09-11', '21:05:33.0'),
+(194, 'Implode Test', 200000, 'test info', 'land 1 (1).jpg', 'jpg', 'featured', 'products', 'pr64f714a31191f', 'Ruiru', '100*100', '2023-09-13', '15:03:24.0'),
+(195, 'Implode Test', 200000, 'test info', 'bgvideo2 (1).mp4', 'mp4', 'featured', 'products', 'pr64f714a31191f', 'Ruiru', '100*100', '2023-09-13', '15:05:31.0'),
+(196, 'Implode Test', 200000, 'test info', 'IMG_20201206_133455-870x420.jpg', 'jpg', 'featured', 'products', 'pr64f714a31191f', 'Ruiru', '100*100', '2023-09-13', '15:05:31.0'),
+(197, 'Implode Test', 200000, 'test info', 'IMG_20230104_121438.jpg', 'jpg', 'featured', 'products', 'pr64f714a31191f', 'Ruiru', '100*100', '2023-09-13', '15:05:31.0'),
+(198, 'Implode Test', 200000, 'test info', 'IMG-20210503-WA0004.jpg', 'jpg', 'featured', 'products', 'pr64f714a31191f', 'Ruiru', '100*100', '2023-09-13', '15:05:31.0'),
+(199, 'Implode Test', 200000, 'test info', 'IMG-20220919-WA0003.jpg', 'jpg', 'featured', 'products', 'pr64f714a31191f', 'Ruiru', '100*100', '2023-09-13', '15:05:31.0'),
+(200, 'Implode Test', 200000, 'test info', 'IMG-20221214-WA0005.jpg', 'jpg', 'featured', 'products', 'pr64f714a31191f', 'Ruiru', '100*100', '2023-09-13', '15:05:31.0'),
+(225, 'Test Property', 400000, ' residential plots, touching the tarmac with good security, water and electricity', 'bgvideo2.mp4', 'mp4', 'featured', 'products', 'pr64f734a8e44c3', 'Naivasha', '100*100', '2023-09-13', '15:25:17.0'),
+(226, 'Test Property', 400000, ' residential plots, touching the tarmac with good security, water and electricity', 'IMG-20220919-WA0003.jpg', 'jpg', 'featured', 'products', 'pr64f734a8e44c3', 'Naivasha', '100*100', '2023-09-13', '15:25:17.0'),
+(227, 'Test Property', 400000, ' residential plots, touching the tarmac with good security, water and electricity', 'IMG-20221214-WA0005.jpg', 'jpg', 'featured', 'products', 'pr64f734a8e44c3', 'Naivasha', '100*100', '2023-09-13', '15:25:17.0'),
+(228, 'Test Property', 400000, ' residential plots, touching the tarmac with good security, water and electricity', 'land 4 (1).jpg', 'jpg', 'featured', 'products', 'pr64f734a8e44c3', 'Naivasha', '100*100', '2023-09-13', '15:25:17.0'),
+(229, 'Test Property', 400000, ' residential plots, touching the tarmac with good security, water and electricity', 'IMG_20230104_121438.jpg', 'jpg', 'featured', 'products', 'pr64f734a8e44c3', 'Naivasha', '100*100', '2023-09-13', '15:46:23.0');
 
 -- --------------------------------------------------------
 
@@ -255,29 +266,9 @@ INSERT INTO `products` (`id`, `productname`, `price`, `productinfo`, `productima
 --
 
 CREATE TABLE `soldout` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `propertyId` int(11) DEFAULT NULL
+  `id` int(20) NOT NULL,
+  `propertyId` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `soldout`
---
-
-INSERT INTO `soldout` (`id`, `propertyId`) VALUES
-(1, 20),
-(2, 19),
-(3, 22),
-(7, 25),
-(8, 24),
-(9, 26),
-(10, 21),
-(11, 28),
-(12, 29),
-(13, 23),
-(14, 34),
-(15, 27),
-(16, 31),
-(17, 37);
 
 -- --------------------------------------------------------
 
@@ -423,7 +414,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `blogs`
 --
 ALTER TABLE `blogs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `bookings`
@@ -438,10 +429,46 @@ ALTER TABLE `callrequests`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `contact`
+--
+ALTER TABLE `contact`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `enquiries`
+--
+ALTER TABLE `enquiries`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+
+--
+-- AUTO_INCREMENT for table `offers`
+--
+ALTER TABLE `offers`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=243;
+
+--
+-- AUTO_INCREMENT for table `soldout`
+--
+ALTER TABLE `soldout`
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `studio`
+--
+ALTER TABLE `studio`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
