@@ -523,7 +523,7 @@ if (isset($_POST['enquiries'])) {
       ?>
      <form action="" method="post" id="translate">
         <label for="information"> Purchase Process<span>*</span></label>
-        <textarea name="test" type="text"><?php// echo $message; ?></textarea>
+        <textarea name="test" type="text"><?// echo $message; ?></textarea>
         
         <button type="submit" form="translate" value="submit">Translate</button>
         <button type="reset" value="reset">Reset</button>
@@ -535,7 +535,7 @@ if (isset($_POST['enquiries'])) {
       ?>
       <div>
         <ol>
-            <li><?php// echo $message; ?></li>
+            <li><?// echo $message; ?></li>
         </ol>
        
       </div> -->
